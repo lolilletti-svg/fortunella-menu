@@ -175,6 +175,7 @@ body {
 }
 .pizza-svg { display: none; }
 .top-desc { display: none; }
+.mobile-pizza { display: none; }
 
 /* ─── NOCHE BANNER ─── */
 .noche-banner {
@@ -593,40 +594,30 @@ body {
   .page::before { display: none; }
   .page-inner { padding: 20px 16px 16px; }
 
-  /* Header: columna única, orden vertical */
+  /* Header: columna única */
   .header-grid {
     grid-template-columns: 1fr;
     gap: 0;
     margin-bottom: 12px;
   }
 
-  /* 1. Título centrado */
-  .hero-col {
-    order: 1;
-    align-items: center;
-  }
+  /* Ocultar right-col (absoluta) en mobile */
+  .right-col { display: none; }
 
-  /* 2. Pizza en flujo, centrada, no absoluta */
-  .right-col {
-    order: 2;
+  /* Mostrar pizza mobile en flujo */
+  .mobile-pizza {
+    display: flex;
     justify-content: center;
-    margin: 6px 0 4px;
-    position: static !important;
+    margin: 4px 0 8px;
   }
-  .right-col img {
-    position: static !important;
-    top: auto !important;
-    right: auto !important;
-    width: 120px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 0 auto !important;
-    object-fit: contain !important;
+  .mobile-pizza img {
+    width: 120px;
+    height: auto;
+    display: block;
   }
 
-  /* 3. Facts debajo */
+  /* Facts */
   .facts-col {
-    order: 3;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 4px 16px;
@@ -662,7 +653,7 @@ body {
   .item-desc { font-size: 11px; }
   .item-price { font-size: 13px; }
 
-  /* Bebidas: una columna */
+  /* Bebidas */
   .bebidas-grid { grid-template-columns: 1fr; }
 
   /* Bottom & footer */
@@ -676,7 +667,7 @@ body {
 /* Pantallas muy chicas (≤ 400px) */
 @media (max-width: 400px) {
   .hero-name { font-size: 54px; }
-  .right-col img { width: 110px; }
+  .mobile-pizza img { width: 100px; }
   .pizza-grid { grid-template-columns: 1fr; }
   .pizza-name { font-size: 12px; }
   .pizza-desc { font-size: 10.5px; }
@@ -760,6 +751,10 @@ body {
       <div class="hero-name">Fortunella</div>
       <div class="hero-sub">Pizzas</div>
       <div class="hero-est">La Rioja, Argentina &nbsp;·&nbsp; Est. 2020</div>
+    </div>
+
+    <div class="mobile-pizza">
+      <img src="pizza-transparent.png" alt="Pizza Fortunella">
     </div>
 
     <div class="right-col">
