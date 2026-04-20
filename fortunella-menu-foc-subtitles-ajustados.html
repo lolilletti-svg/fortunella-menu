@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fortunella — Menú Noche a la Carta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Great+Vibes&family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;1,300&family=Barlow+Condensed:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:    #0F2560;
+  --blue2:   #0F2560;
+  --orange:  #CC3300;
+  --cream:   #F5F0E6;
+  --cream2:  #EDE7D5;
+  --cream3:  #E4DBCA;
+}
+
+body {
+  background: var(--cream2);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page {
+  max-width: 900px;
+  margin: 32px auto;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 60px rgba(15,37,96,0.18);
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed var(--blue);
+  opacity: 0.20;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-inner { position: relative; z-index: 1; padding: 32px 40px; }
+
+/* ─── HEADER ─── */
+.header-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 150px;
+  gap: 0 22px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* Fact blocks (left) */
+.facts-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 0;
+  align-self: center;
+}
+.fact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fact-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--orange);
+  line-height: 1;
+}
+.fact-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--blue);
+  opacity: 0.82;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+.fact-dots {
+  font-size: 8px;
+  color: var(--blue);
+  opacity: 0.18;
+  letter-spacing: 0.18em;
+  margin: 1px 0;
+}
+
+/* Center hero */
+.hero-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+  width: 100%;
+  align-self: center;
+}
+.hero-script {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange);
+  line-height: 1;
+  text-align: center;
+}
+.hero-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 98px;
+  color: var(--blue);
+  line-height: 0.9;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.hero-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.40em;
+  color: var(--blue);
+  text-align: center;
+  margin-top: 8px;
+  width: 100%;
+}
+.hero-est {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  opacity: 0.44;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+.hero-est::before, .hero-est::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 30px;
+  background: var(--blue);
+  opacity: 0.25;
+}
+
+/* Right col */
+.right-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.right-col img {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  width: 230px;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+}
+.pizza-svg { display: none; }
+.top-desc { display: none; }
+
+/* ─── NOCHE BANNER ─── */
+.noche-banner {
+  background: var(--blue);
+  margin: 0 -40px;
+  padding: 12px 40px 10px;
+  text-align: center;
+}
+.noche-banner-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.38em;
+  color: var(--cream);
+  line-height: 1;
+}
+.noche-banner-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-top: 5px;
+}
+
+/* ─── DIVIDERS ─── */
+.dash-h {
+  width: 100%;
+  border: none;
+  border-top: 1px dashed var(--blue);
+  opacity: 0.22;
+  margin: 6px 0;
+}
+.dash-h.orange { border-color: var(--orange); opacity: 0.45; }
+
+.asterisk-row {
+  font-size: 9px;
+  letter-spacing: 0.40em;
+  color: var(--blue);
+  opacity: 0.22;
+  text-align: center;
+  margin: 20px 0 4px;
+}
+
+/* ─── SECTION ─── */
+.section { margin-top: 28px; }
+
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--blue);
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2.5px solid var(--blue);
+  display: block;
+  margin-bottom: 2px;
+}
+.sec-title.orange {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+.sec-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0.56;
+  margin-top: 5px;
+  margin-bottom: 14px;
+}
+
+/* ─── PIZZA GRID ─── */
+.pizza-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(15,37,96,0.10);
+  border: 1px solid rgba(15,37,96,0.10);
+}
+
+.pizza-item {
+  background: var(--cream);
+  padding: 10px 12px 8px;
+}
+.pizza-item:hover { background: var(--cream2); transition: background 0.15s; }
+
+.pizza-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  line-height: 1.12;
+  margin-bottom: 3px;
+}
+
+.pizza-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--blue);
+  opacity: 0.86;
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+
+.pizza-prices {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+}
+
+/* ─── BOX DEGUSTACIÓN ─── */
+.box-degu {
+  border: 1.5px solid var(--orange);
+  padding: 14px 20px;
+  margin-top: 1px;
+  background: var(--cream);
+  grid-column: span 2;
+  text-align: center;
+}
+.box-degu-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.box-degu-body {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  color: var(--blue);
+  opacity: 0.84;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+.box-degu-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  color: var(--orange);
+  letter-spacing: 0.06em;
+  margin-top: 5px;
+}
+
+/* ─── LIST ITEMS (sandwiches, ensalada) ─── */
+.items-list { border-top: 1px solid rgba(15,37,96,0.10); }
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(15,37,96,0.10);
+}
+
+.item-left { flex: 1; }
+
+.item-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  line-height: 1.12;
+}
+
+.item-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--blue);
+  opacity: 0.86;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.item-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+  white-space: nowrap;
+}
+
+/* ─── VALIENTES HEADER ─── */
+.valientes-header {
+  background: var(--orange);
+  color: var(--cream);
+  padding: 9px 14px;
+  margin-bottom: 0;
+}
+.valientes-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+.valientes-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ─── FOCACCERIA ─── */
+.foc-sub-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  opacity: 1;
+  margin: 14px 0 6px;
+  border-bottom: 0.8px solid rgba(15,37,96,0.14);
+  padding-bottom: 3px;
+  text-transform: uppercase;
+}
+
+/* ─── EMPANADAS TABLE ─── */
+.emp-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+
+.emp-table thead th {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  opacity: 0.58;
+  text-align: right;
+  padding: 0 0 6px 10px;
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.emp-table thead th:first-child { text-align: left; padding-left: 0; }
+
+.emp-table tbody tr { border-bottom: 0.5px solid rgba(15,37,96,0.07); }
+
+.emp-table tbody td {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  padding: 6px 0;
+  vertical-align: middle;
+}
+.emp-table tbody td.emp-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--orange);
+  text-align: right;
+  font-weight: 400;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+/* ─── POSTRES ─── */
+.postres-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.postre-card {
+  background: var(--cream2);
+  border: 1px dashed rgba(15,37,96,0.22);
+  padding: 10px 20px;
+  flex: 1;
+  text-align: center;
+}
+.postre-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.10em;
+  color: var(--blue);
+}
+.postre-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ─── BEBIDAS ─── */
+.bebidas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  margin-top: 8px;
+}
+.bebida-block { display: flex; flex-direction: column; gap: 0; }
+
+.bebidas-group-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  opacity: 0.56;
+  margin: 10px 0 5px;
+  border-bottom: 0.8px dashed rgba(15,37,96,0.16);
+  padding-bottom: 3px;
+}
+.bebida-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+.bebida-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.03em;
+}
+.bebida-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  color: var(--orange);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+/* ─── BLOQUE INFERIOR UNIFICADO ─── */
+.bottom-block {
+  background: var(--blue);
+  margin: 28px -40px -32px;
+  padding: 14px 40px 24px;
+  border-top: 2px solid rgba(204,51,0,0.40);
+}
+
+.also-ask {
+  margin: 0 0 14px;
+  padding: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.also-ask-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+
+.also-ask-items {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: rgba(245,240,230,0.56);
+  line-height: 1.6;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: transparent;
+  margin: 0;
+  padding: 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: none;
+}
+.footer-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 54px;
+  color: var(--cream);
+  line-height: 0.82;
+  font-weight: 400;
+}
+.footer-center { text-align: center; }
+.footer-buen {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--orange);
+}
+.footer-tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(245,240,230,0.40);
+  margin-top: 3px;
+}
+.footer-right { text-align: right; }
+.footer-info {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(245,240,230,0.46);
+  line-height: 1.75;
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE — MOBILE
+────────────────────────────────────── */
+@media (max-width: 768px) {
+  body { background: var(--cream); }
+
+  .page { margin: 0; box-shadow: none; }
+  .page::before { display: none; }
+  .page-inner { padding: 24px 18px 18px; }
+
+  /* Header */
+  .header-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 14px;
+  }
+  .hero-col { order: 1; }
+  .facts-col {
+    order: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .fact-dots { display: none; }
+
+  /* Pizza: mantiene el efecto de esquina pero más chica */
+  .right-col img {
+    width: 170px;
+    top: -12px;
+    right: -12px;
+  }
+
+  /* Hero */
+  .hero-name { font-size: 68px; }
+  .hero-sub { font-size: 14px; letter-spacing: 0.28em; }
+  .hero-est { font-size: 9px; }
+
+  /* Banner */
+  .noche-banner { margin: 0 -18px; padding: 10px 18px 8px; }
+  .noche-banner-title { font-size: 17px; letter-spacing: 0.26em; }
+  .noche-banner-sub { font-size: 9px; letter-spacing: 0.11em; }
+
+  /* Sections */
+  .section { margin-top: 22px; }
+  .sec-title { font-size: 22px; }
+
+  /* Pizza items */
+  .pizza-name { font-size: 13px; }
+  .pizza-desc { font-size: 11px; }
+  .pizza-prices { font-size: 11.5px; }
+
+  /* List items */
+  .item-name { font-size: 13px; }
+  .item-desc { font-size: 11px; }
+
+  /* Bebidas: una columna */
+  .bebidas-grid { grid-template-columns: 1fr; }
+
+  /* Bottom & footer */
+  .bottom-block { margin: 22px -18px -18px; padding: 12px 18px 20px; }
+  .footer { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+  .footer-logo { font-size: 44px; }
+  .footer-center, .footer-right { text-align: center; }
+}
+
+/* Pantallas muy chicas (≤ 400px) */
+@media (max-width: 400px) {
+  .hero-name { font-size: 52px; }
+  .right-col img { width: 130px; top: -8px; right: -8px; }
+  .pizza-grid { grid-template-columns: 1fr; }
+  .pizza-name { font-size: 12px; }
+  .pizza-desc { font-size: 10.5px; }
+}
+
+/* ──────────────────────────────────────
+   PRINT — A4
+────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.2cm 1cm;
+  }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body { background: white !important; margin: 0; padding: 0; }
+
+  .page {
+    max-width: 100%;
+    margin: 0;
+    box-shadow: none;
+    background: var(--cream) !important;
+  }
+
+  .page-inner { padding: 20px 28px; }
+
+  /* Pizza ajustada para A4 */
+  .right-col img {
+    width: 230px;
+    top: -20px;
+    right: -28px;
+  }
+
+  /* Banner y bottom con márgenes ajustados a A4 */
+  .noche-banner { margin: 0 -28px; }
+  .bottom-block { margin: 28px -28px -20px; }
+
+  /* Evitar cortes dentro de items */
+  .pizza-item,
+  .list-item,
+  .foc-item,
+  .postre-card { break-inside: avoid; }
+
+  .section { break-inside: avoid; }
+  .noche-banner { break-after: avoid; }
+  .pizza-item:hover { background: var(--cream) !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="page">
+<div class="page-inner">
+
+  <!-- ─── HEADER ─── -->
+  <div class="header-grid">
+
+    <div class="facts-col">
+      <div class="fact-block">
+        <span class="fact-label">Masa Madre</span>
+        <span class="fact-value">Fermentación lenta, 24 horas de reposo</span>
+      </div>
+      <span class="fact-dots">· · · · · · · ·</span>
+      <div class="fact-block">
+        <span class="fact-label">Ingredientes Frescos</span>
+        <span class="fact-value">Seleccionados cada día, de productores locales</span>
+      </div>
+      <span class="fact-dots">· · · · · · · ·</span>
+      <div class="fact-block">
+        <span class="fact-label">Horno de Barro</span>
+        <span class="fact-value">Cocción a 400°, corteza crujiente y ligera</span>
+      </div>
+    </div>
+
+    <div class="hero-col">
+      <div class="hero-name">Fortunella</div>
+      <div class="hero-sub">Pizzas</div>
+      <div class="hero-est">La Rioja, Argentina &nbsp;·&nbsp; Est. 2020</div>
+    </div>
+
+    <div class="right-col">
+      <img src="pizza-transparent.png" alt="Pizza Fortunella">
+    </div>
+
+  </div>
+
+  <!-- ─── NOCHE BANNER ─── -->
+  <div class="noche-banner">
+    <div class="noche-banner-title">Menú Noche a la Carta</div>
+    <div class="noche-banner-sub">Pizzas · Sandwiches · Focacceria · Empanadas · Postres · Bebidas</div>
+  </div>
+
+  <!-- ─── PIZZAS ─── -->
+  <div class="section">
+    <span class="sec-title">Pizzas</span>
+    <div class="sec-sub">Masa madre · Horno de barro · Todas incluyen tomates asados y aceitunas</div>
+    <div class="pizza-grid">
+
+      <div class="pizza-item"><p class="pizza-name">Muzzarella</p><p class="pizza-desc">Salsa, muzarrella, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $7.000 · GRANDE $13.000</div></div>
+      <div class="pizza-item"><p class="pizza-name">Doble Muzzarella</p><p class="pizza-desc">Salsa, doble muzarrella, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $7.800 · GRANDE $15.100</div></div>
+      <div class="pizza-item"><p class="pizza-name">Margarita</p><p class="pizza-desc">Salsa, muzarrella, aceite de albahaca, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $7.200 · GRANDE $14.100</div></div>
+      <div class="pizza-item"><p class="pizza-name">Fugazza</p><p class="pizza-desc">Salsa, muzarrella, cebolla caramelizada, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $7.200 · GRANDE $14.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Fugazza con Jamón</p><p class="pizza-desc">Salsa, muzarrella, cebolla caramelizada, jamón cocido, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $7.700 · GRANDE $14.900</div></div>
+      <div class="pizza-item"><p class="pizza-name">Jamón Crudo y Rúcula</p><p class="pizza-desc">Salsa, muzarrella, jamón crudo, rúcula, tomates asados y aceitunas negras</p><div class="pizza-prices">CHICA $9.000 · GRANDE $16.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">Napolitana</p><p class="pizza-desc">Salsa, muzarrella, tomate, ajo y aceitunas</p><div class="pizza-prices">CHICA $7.500 · GRANDE $14.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">Napolitana con Jamón</p><p class="pizza-desc">Salsa, muzarrella, tomate, ajo, jamón cocido y aceitunas</p><div class="pizza-prices">CHICA $8.900 · GRANDE $15.700</div></div>
+      <div class="pizza-item"><p class="pizza-name">Capresse</p><p class="pizza-desc">Salsa, muzarrella, tomate, aceite de albahaca y aceitunas</p><div class="pizza-prices">CHICA $8.500 · GRANDE $15.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Calabresa</p><p class="pizza-desc">Salsa, muzarrella, calabresa, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.700 · GRANDE $15.800</div></div>
+      <div class="pizza-item"><p class="pizza-name">Jamón y Morrón</p><p class="pizza-desc">Salsa, muzarrella, jamón cocido, morrones asados, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.800 · GRANDE $15.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">Especial</p><p class="pizza-desc">Salsa, muzarrella, jamón cocido, huevo frito, morrones asados, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.000 · GRANDE $17.000</div></div>
+      <div class="pizza-item"><p class="pizza-name">4 Quesos</p><p class="pizza-desc">Salsa, muzarrella, roquefort, provolone, parmesano, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.100 · GRANDE $17.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Roquefort y Nuez</p><p class="pizza-desc">Salsa, muzarrella, roquefort, nuez, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.700 · GRANDE $16.000</div></div>
+      <div class="pizza-item"><p class="pizza-name">Anchoas</p><p class="pizza-desc">Salsa, muzarrella, anchoas, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.000 · GRANDE $16.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Cantimpalo</p><p class="pizza-desc">Salsa, muzarrella, cantimpalo, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.700 · GRANDE $15.800</div></div>
+      <div class="pizza-item"><p class="pizza-name">Brócoli y Jamón</p><p class="pizza-desc">Salsa, muzarrella, brócoli, jamón cocido, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.100 · GRANDE $16.400</div></div>
+      <div class="pizza-item"><p class="pizza-name">Brócoli y Panceta</p><p class="pizza-desc">Salsa, muzarrella, brócoli, panceta, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.300 · GRANDE $16.800</div></div>
+      <div class="pizza-item"><p class="pizza-name">Choclo Asado</p><p class="pizza-desc">Salsa, muzarrella, choclo asado, aceite de albahaca, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.200 · GRANDE $14.900</div></div>
+      <div class="pizza-item"><p class="pizza-name">Choclo Asado y Queso Cremoso</p><p class="pizza-desc">Salsa, muzarrella, choclo asado, queso cremoso, aceite de albahaca, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.600 · GRANDE $15.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">Panceta Ahumada</p><p class="pizza-desc">Salsa, muzarrella, panceta ahumada, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.800 · GRANDE $16.900</div></div>
+      <div class="pizza-item"><p class="pizza-name">Provolone</p><p class="pizza-desc">Salsa, muzarrella, provolone, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.900 · GRANDE $17.000</div></div>
+      <div class="pizza-item"><p class="pizza-name">Provolone con Jamón</p><p class="pizza-desc">Salsa, muzarrella, provolone, jamón cocido, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.500 · GRANDE $18.100</div></div>
+      <div class="pizza-item"><p class="pizza-name">Ananás y Cerezas</p><p class="pizza-desc">Salsa, muzarrella, ananás, cerezas, azúcar negra, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.300 · GRANDE $17.000</div></div>
+      <div class="pizza-item"><p class="pizza-name">Ananás y Jamón</p><p class="pizza-desc">Salsa, muzarrella, ananás, jamón cocido, azúcar negra, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $10.200 · GRANDE $18.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Champiñones</p><p class="pizza-desc">Salsa, muzarrella, champiñones salteados, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.600 · GRANDE $18.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">Palmitos</p><p class="pizza-desc">Salsa, muzarrella, palmitos, salsa golf, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $10.200 · GRANDE $19.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">Picante</p><p class="pizza-desc">Salsa, muzarrella, ají preparado, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $7.200 · GRANDE $13.800</div></div>
+      <div class="pizza-item"><p class="pizza-name">Veggie</p><p class="pizza-desc">Salsa, muzarrella, brócoli, choclo asado, cebolla caramelizada, champiñones, morrones asados, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $10.000 · GRANDE $17.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Popeye</p><p class="pizza-desc">Salsa, muzarrella, espinaca con aceite de ajo suave, manteca en cubitos, cebolla crocante, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.900 · GRANDE $16.200</div></div>
+      <div class="pizza-item"><p class="pizza-name">Porteña</p><p class="pizza-desc">Pizza de molde, salsa, ½ kg muzarrella, tomates asados y aceitunas · Come entre 7 y 8 personas</p><div class="pizza-prices">GRANDE $19.500</div></div>
+      <div class="pizza-item"><p class="pizza-name">A Puro Huevo</p><p class="pizza-desc">Salsa, muzarrella, rodajas de huevo, panceta crocante, cebolla morada, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $9.300 · GRANDE $17.300</div></div>
+      <div class="pizza-item"><p class="pizza-name">Un Viaje de Papas <span style="font-size:8px;opacity:0.60;font-family:'Barlow Condensed',sans-serif;font-weight:400;">+ alioli $600</span></p><p class="pizza-desc">Salsa, muzarrella, mini papas pay, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $8.600 · GRANDE $14.100</div></div>
+      <div class="pizza-item"><p class="pizza-name">Burrata y Mortadela</p><p class="pizza-desc">Salsa, muzarrella, mortadela con pistacho, burrata, tomates asados y aceitunas negras</p><div class="pizza-prices">CHICA $10.800 · GRANDE $19.800</div></div>
+      <div class="pizza-item"><p class="pizza-name">Burrata y Jamón Crudo</p><p class="pizza-desc">Salsa, muzarrella, jamón crudo, burrata, rúcula, tomates asados y aceitunas negras</p><div class="pizza-prices">CHICA $12.300 · GRANDE $22.600</div></div>
+      <div class="pizza-item"><p class="pizza-name">Carne</p><p class="pizza-desc">Salsa, muzarrella, carne braseada, cebollas asadas, hierbas, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $11.600 · GRANDE $21.300</div></div>
+      <div class="pizza-item"><p class="pizza-name">Cherry Bocconcinos</p><p class="pizza-desc">Salsa, muzarrella, cherrys asados, bocconcinos, pesto de albahaca y nuez, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $11.900 · GRANDE $21.800</div></div>
+      <div class="pizza-item"><p class="pizza-name">Chayera</p><p class="pizza-desc">Salsa, muzarrella, tomates cherry, aceite de albahaca, bolitas de muzzarella, tomates asados y aceitunas</p><div class="pizza-prices">CHICA $10.200 · GRANDE $17.500</div></div>
+
+      <!-- Box Degustación span full width -->
+      <div class="box-degu">
+        <div class="box-degu-title">✦ Box Degustación de Pizzas ✦</div>
+        <div class="box-degu-body">9 pizzetas para compartir: Napolitana · Calabresa · Muzza · Capresse · Fugazza · Cantimpalo · 4 Quesos · Jamón y Morrón · Panceta</div>
+        <div class="box-degu-price">$19.800</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SANDWICHES ─── -->
+  <div class="asterisk-row">✦ · ✦ · ✦</div>
+  <div class="section">
+    <div class="valientes-header">
+      <div class="valientes-title">Sandwich Solo para Valientes</div>
+      <div class="valientes-sub">Masa de pizza · Comen entre 7 y 8 personas · Aderezo Fortunella</div>
+    </div>
+    <div class="items-list">
+      <div class="list-item"><div class="item-left"><p class="item-name">Milanesa de Carne</p><p class="item-desc">Masa de pizza, tomate, lechuga, huevo frito, jamón, queso, milanesa de carne y aderezo Fortunella</p></div><span class="item-price">$75.000</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Milanesa de Pollo</p><p class="item-desc">Masa de pizza, tomate, lechuga, huevo frito, jamón, queso, milanesa de pollo y aderezo Fortunella</p></div><span class="item-price">$70.000</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Lomito</p><p class="item-desc">Masa de pizza, tomate, lechuga, huevo frito, jamón, queso, lomo y aderezo Fortunella</p></div><span class="item-price">$85.000</span></div>
+    </div>
+  </div>
+
+  <!-- ─── FOCACCERIA ─── -->
+  <div class="asterisk-row">✦ · ✦ · ✦</div>
+  <div class="section">
+    <span class="sec-title orange">Focacceria</span>
+    <div class="sec-sub">Sandwiches con masa de focaccia artesanal</div>
+
+    <div class="foc-sub-title">Clásicos</div>
+    <div class="items-list" style="border-top:none;">
+      <div class="list-item"><div class="item-left"><p class="item-name">Jamón Crudo</p><p class="item-desc">Jamón crudo, queso tybo, lechuga o rúcula y aderezo Fortunella</p></div><span class="item-price">$10.000</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Jamón Cocido</p><p class="item-desc">Jamón cocido, queso tybo, lechuga, tomate y aderezo Fortunella</p></div><span class="item-price">$9.300</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Milanesa de Carne</p><p class="item-desc">Milanesa de carne, jamón cocido, lechuga, tomate y aderezo Fortunella</p></div><span class="item-price">$11.000</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Milanesa de Pollo</p><p class="item-desc">Milanesa de pollo, queso tybo, lechuga, tomate y aderezo Fortunella</p></div><span class="item-price">$10.000</span></div>
+    </div>
+
+    <div class="foc-sub-title">Especiales</div>
+    <div class="items-list" style="border-top:none;">
+      <div class="list-item"><div class="item-left"><p class="item-name">Mortadela</p><p class="item-desc">Mortadela con pistachos, stracciatella, pesto, tomates asados, pickles de pepino, rúcula</p></div><span class="item-price">$13.000</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Jamón Crudo Especial</p><p class="item-desc">Jamón crudo, stracciatella, rúcula, tomates asados y aderezo Fortunella</p></div><span class="item-price">$15.500</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Porcheta</p><p class="item-desc">Arrollado de cerdo con hierbas, berenjenas al escabeche, cebollas en pickles y aderezo de mostaza</p></div><span class="item-price">$10.800</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Carne</p><p class="item-desc">Carne, cebolla en pickles, tomates asados, morrones asados, rúcula y aderezo de chimichurri</p></div><span class="item-price">$11.500</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Panceta Ahumada</p><p class="item-desc">Panceta ahumada, cebolla morada con limón, repollo morado y aderezo de tomate</p></div><span class="item-price">$10.500</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Veggie</p><p class="item-desc">Stracciatella, escabeche de berenjenas, rúcula, tomates asados y pesto</p></div><span class="item-price">$11.000</span></div>
+      <div class="list-item"><div class="item-left"><p class="item-name">Bondiola Braseada</p><p class="item-desc">Cerdo desmenuzado con salsa barbacoa, repollo blanco y morado al limón, pickles de cebolla morada, panceta crocante y aderezo de mostaza</p></div><span class="item-price">$13.000</span></div>
+    </div>
+  </div>
+
+  <!-- ─── EMPANADAS ─── -->
+  <div class="asterisk-row">✦ · ✦ · ✦</div>
+  <div class="section">
+    <span class="sec-title">Empanadas</span>
+    <table class="emp-table">
+      <thead><tr><th></th><th>UNID.</th><th>½ DOC.</th><th>DOC.</th></tr></thead>
+      <tbody>
+        <tr><td>Verduras</td><td class="emp-price">$1.500</td><td class="emp-price">$7.500</td><td class="emp-price">$13.000</td></tr>
+        <tr><td>Jamón y Queso</td><td class="emp-price">$1.700</td><td class="emp-price">$9.000</td><td class="emp-price">$17.000</td></tr>
+        <tr><td>Pollo</td><td class="emp-price">$1.800</td><td class="emp-price">$9.500</td><td class="emp-price">$17.000</td></tr>
+        <tr><td>Carne</td><td class="emp-price">$2.000</td><td class="emp-price">$10.000</td><td class="emp-price">$19.000</td></tr>
+        <tr><td>Carne Fritas</td><td class="emp-price">$2.000</td><td class="emp-price">$10.000</td><td class="emp-price">$19.000</td></tr>
+        <tr><td>Capresse</td><td class="emp-price">$1.700</td><td class="emp-price">$9.000</td><td class="emp-price">$17.000</td></tr>
+        <tr><td>Árabes</td><td class="emp-price">$2.500</td><td class="emp-price">$15.000</td><td class="emp-price">$27.000</td></tr>
+        <tr><td>Carne a Cuchillo</td><td class="emp-price">$2.300</td><td class="emp-price">$12.000</td><td class="emp-price">$23.000</td></tr>
+        <tr><td>Cebolla y Muzza</td><td class="emp-price">$2.300</td><td class="emp-price">$8.500</td><td class="emp-price">$15.000</td></tr>
+        <tr><td>Acelga y Provolone</td><td class="emp-price">$1.700</td><td class="emp-price">$8.000</td><td class="emp-price">$15.000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── ENSALADA ─── -->
+  <div class="asterisk-row">✦ · ✦ · ✦</div>
+  <div class="section">
+    <span class="sec-title">Ensalada</span>
+    <div class="items-list">
+      <div class="list-item"><div class="item-left"><p class="item-name">Ensalada César</p></div><span class="item-price">$9.800</span></div>
+    </div>
+  </div>
+
+  <!-- ─── POSTRES ─── -->
+  <div class="asterisk-row">✦ · ✦ · ✦</div>
+  <div class="section">
+    <span class="sec-title">Postres</span>
+    <div class="postres-row">
+      <div class="postre-card"><p class="postre-name">Flan</p><p class="postre-price">$3.500</p></div>
+      <div class="postre-card"><p class="postre-name">Tiramisú</p><p class="postre-price">$6.000</p></div>
+    </div>
+  </div>
+
+  <!-- ─── BEBIDAS ─── -->
+  <div class="asterisk-row">✦ · ✦ · ✦</div>
+  <div class="section">
+    <span class="sec-title">Bebidas</span>
+    <div class="bebidas-grid">
+      <div class="bebida-block">
+        <p class="bebidas-group-title">Sin Alcohol</p>
+        <div class="bebida-row"><span class="bebida-name">Agua</span><span class="bebida-price">$2.000</span></div>
+        <div class="bebida-row"><span class="bebida-name">Agua saborizada</span><span class="bebida-price">$3.000</span></div>
+        <div class="bebida-row"><span class="bebida-name">Coca Zero 500ml</span><span class="bebida-price">$3.800</span></div>
+        <div class="bebida-row"><span class="bebida-name">Coca Común 500ml</span><span class="bebida-price">$3.800</span></div>
+        <div class="bebida-row"><span class="bebida-name">Fanta 500ml</span><span class="bebida-price">$3.800</span></div>
+        <div class="bebida-row"><span class="bebida-name">Sprite 500ml</span><span class="bebida-price">$3.800</span></div>
+        <div class="bebida-row"><span class="bebida-name">Coca Común 1,5L</span><span class="bebida-price">$6.000</span></div>
+        <div class="bebida-row"><span class="bebida-name">Coca Zero 1,5L</span><span class="bebida-price">$6.000</span></div>
+        <div class="bebida-row"><span class="bebida-name">Fanta 1,5L</span><span class="bebida-price">$6.000</span></div>
+        <div class="bebida-row"><span class="bebida-name">Sprite 1,5L</span><span class="bebida-price">$6.000</span></div>
+      </div>
+      <div class="bebida-block">
+        <p class="bebidas-group-title">Cervezas</p>
+        <div class="bebida-row"><span class="bebida-name">Budweiser lata 473ml</span><span class="bebida-price">$3.500</span></div>
+        <div class="bebida-row"><span class="bebida-name">Corona 330ml</span><span class="bebida-price">$4.000</span></div>
+        <div class="bebida-row"><span class="bebida-name">Corona 710ml</span><span class="bebida-price">$6.500</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── BLOQUE INFERIOR UNIFICADO ─── -->
+  <div class="bottom-block">
+    <div class="also-ask">
+      <div class="also-ask-title">✦ También podés pedir ✦</div>
+      <div class="also-ask-items">Mitad y mitad en pizzas &nbsp;·&nbsp; Ingredientes adicionales &nbsp;·&nbsp; Pizza de molde &nbsp;·&nbsp; Empanadas mixtas</div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-logo">Fortunella</div>
+      <div class="footer-center">
+        <div class="footer-buen">¡buen provecho!</div>
+        <div class="footer-tagline">Gracias por elegirnos</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-info">fortunella.pizzas</div>
+        <div class="footer-info">@fortunella.pizzas</div>
+        <div class="footer-info">La Rioja, Argentina · Est. 2020</div>
+      </div>
+    </footer>
+  </div>
+
+</div><!-- /page-inner -->
+</div><!-- /page -->
+</body>
+</html>
