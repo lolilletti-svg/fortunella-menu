@@ -604,11 +604,14 @@ body {
   /* Ocultar right-col (absoluta) en mobile */
   .right-col { display: none; }
 
-  /* Mostrar pizza mobile en flujo */
+  /* Orden: 1-título, 2-pizza, 3-facts */
+  .hero-col { order: 1; }
+
   .mobile-pizza {
     display: flex;
+    order: 2;
     justify-content: center;
-    margin: 4px 0 8px;
+    margin: 8px 0 10px;
   }
   .mobile-pizza img {
     width: 120px;
@@ -616,17 +619,18 @@ body {
     display: block;
   }
 
-  /* Facts */
+  /* Facts: columna única, centrada, orden 3 */
   .facts-col {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    justify-content: center;
-    margin-top: 6px;
+    order: 3;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    text-align: center;
   }
   .fact-dots { display: none; }
   .fact-label { font-size: 9px; }
-  .fact-value { font-size: 10px; }
+  .fact-value { font-size: 10px; text-align: center; }
 
   /* Hero */
   .hero-name { font-size: 64px; }
