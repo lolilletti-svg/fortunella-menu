@@ -1,0 +1,148 @@
+{
+  "modules": [
+    {
+      "name": "Pizzas",
+      "subtitle": "Masa madre · Horno de barro · Todas incluyen tomates asados y aceitunas",
+      "layout_type": "pizza-grid",
+      "title_variant": "default",
+      "position": 10,
+      "items": [
+        { "name": "Muzzarella", "description": "Salsa, muzarrella, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":7000},{"label":"GRANDE","value":13000}], "note": null, "featured": false, "position": 10 },
+        { "name": "Doble Muzzarella", "description": "Salsa, doble muzarrella, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":7800},{"label":"GRANDE","value":15100}], "note": null, "featured": false, "position": 20 },
+        { "name": "Margarita", "description": "Salsa, muzarrella, aceite de albahaca, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":7200},{"label":"GRANDE","value":14100}], "note": null, "featured": false, "position": 30 },
+        { "name": "Fugazza", "description": "Salsa, muzarrella, cebolla caramelizada, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":7200},{"label":"GRANDE","value":14200}], "note": null, "featured": false, "position": 40 },
+        { "name": "Fugazza con Jamón", "description": "Salsa, muzarrella, cebolla caramelizada, jamón cocido, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":7700},{"label":"GRANDE","value":14900}], "note": null, "featured": false, "position": 50 },
+        { "name": "Jamón Crudo y Rúcula", "description": "Salsa, muzarrella, jamón crudo, rúcula, tomates asados y aceitunas negras", "prices": [{"label":"CHICA","value":9000},{"label":"GRANDE","value":16500}], "note": null, "featured": false, "position": 60 },
+        { "name": "Napolitana", "description": "Salsa, muzarrella, tomate, ajo y aceitunas", "prices": [{"label":"CHICA","value":7500},{"label":"GRANDE","value":14500}], "note": null, "featured": false, "position": 70 },
+        { "name": "Napolitana con Jamón", "description": "Salsa, muzarrella, tomate, ajo, jamón cocido y aceitunas", "prices": [{"label":"CHICA","value":8900},{"label":"GRANDE","value":15700}], "note": null, "featured": false, "position": 80 },
+        { "name": "Capresse", "description": "Salsa, muzarrella, tomate, aceite de albahaca y aceitunas", "prices": [{"label":"CHICA","value":8500},{"label":"GRANDE","value":15200}], "note": null, "featured": false, "position": 90 },
+        { "name": "Calabresa", "description": "Salsa, muzarrella, calabresa, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8700},{"label":"GRANDE","value":15800}], "note": null, "featured": false, "position": 100 },
+        { "name": "Jamón y Morrón", "description": "Salsa, muzarrella, jamón cocido, morrones asados, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8800},{"label":"GRANDE","value":15500}], "note": null, "featured": false, "position": 110 },
+        { "name": "Especial", "description": "Salsa, muzarrella, jamón cocido, huevo frito, morrones asados, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9000},{"label":"GRANDE","value":17000}], "note": null, "featured": false, "position": 120 },
+        { "name": "4 Quesos", "description": "Salsa, muzarrella, roquefort, provolone, parmesano, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9100},{"label":"GRANDE","value":17200}], "note": null, "featured": false, "position": 130 },
+        { "name": "Roquefort y Nuez", "description": "Salsa, muzarrella, roquefort, nuez, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8700},{"label":"GRANDE","value":16000}], "note": null, "featured": false, "position": 140 },
+        { "name": "Roquefort con Peras y Nuez", "description": "Salsa, muzarrella, roquefort, peras, miel, nuez, tomates asados y aceitunas verdes", "prices": [{"label":"CHICA","value":9600},{"label":"GRANDE","value":17000}], "note": null, "featured": false, "position": 150 },
+        { "name": "Anchoas", "description": "Salsa, muzarrella, anchoas, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9000},{"label":"GRANDE","value":16200}], "note": null, "featured": false, "position": 160 },
+        { "name": "Cantimpalo", "description": "Salsa, muzarrella, cantimpalo, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8700},{"label":"GRANDE","value":15800}], "note": null, "featured": false, "position": 170 },
+        { "name": "Brócoli y Jamón", "description": "Salsa, muzarrella, brócoli, jamón cocido, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9100},{"label":"GRANDE","value":16400}], "note": null, "featured": false, "position": 180 },
+        { "name": "Brócoli y Panceta", "description": "Salsa, muzarrella, brócoli, panceta, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9300},{"label":"GRANDE","value":16800}], "note": null, "featured": false, "position": 190 },
+        { "name": "Choclo Asado", "description": "Salsa, muzarrella, choclo asado, aceite de albahaca, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8200},{"label":"GRANDE","value":14900}], "note": null, "featured": false, "position": 200 },
+        { "name": "Choclo Asado y Queso Cremoso", "description": "Salsa, muzarrella, choclo asado, queso cremoso, aceite de albahaca, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8600},{"label":"GRANDE","value":15500}], "note": null, "featured": false, "position": 210 },
+        { "name": "Panceta Ahumada", "description": "Salsa, muzarrella, panceta ahumada, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8800},{"label":"GRANDE","value":16900}], "note": null, "featured": false, "position": 220 },
+        { "name": "Provolone", "description": "Salsa, muzarrella, provolone, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8900},{"label":"GRANDE","value":17000}], "note": null, "featured": false, "position": 230 },
+        { "name": "Provolone con Jamón", "description": "Salsa, muzarrella, provolone, jamón cocido, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9500},{"label":"GRANDE","value":18100}], "note": null, "featured": false, "position": 240 },
+        { "name": "Ananás y Cerezas", "description": "Salsa, muzarrella, ananás, cerezas, azúcar negra, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9300},{"label":"GRANDE","value":17000}], "note": null, "featured": false, "position": 250 },
+        { "name": "Ananás y Jamón", "description": "Salsa, muzarrella, ananás, jamón cocido, azúcar negra, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":10200},{"label":"GRANDE","value":18200}], "note": null, "featured": false, "position": 260 },
+        { "name": "Champiñones", "description": "Salsa, muzarrella, champiñones salteados, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9600},{"label":"GRANDE","value":18500}], "note": null, "featured": false, "position": 270 },
+        { "name": "Palmitos", "description": "Salsa, muzarrella, palmitos, salsa golf, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":10200},{"label":"GRANDE","value":19500}], "note": null, "featured": false, "position": 280 },
+        { "name": "Picante", "description": "Salsa, muzarrella, ají preparado, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":7200},{"label":"GRANDE","value":13800}], "note": null, "featured": false, "position": 290 },
+        { "name": "Veggie", "description": "Salsa, muzarrella, brócoli, choclo asado, cebolla caramelizada, champiñones, morrones asados, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":10000},{"label":"GRANDE","value":17200}], "note": null, "featured": false, "position": 300 },
+        { "name": "Popeye", "description": "Salsa, muzarrella, espinaca con aceite de ajo suave, manteca en cubitos, cebolla crocante, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8900},{"label":"GRANDE","value":16200}], "note": null, "featured": false, "position": 310 },
+        { "name": "Porteña", "description": "Pizza de molde, salsa, ½ kg muzarrella, tomates asados y aceitunas", "prices": [{"label":"GRANDE","value":19500}], "note": null, "featured": false, "position": 320 },
+        { "name": "A Puro Huevo", "description": "Salsa, muzarrella, rodajas de huevo, panceta crocante, cebolla morada, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":9300},{"label":"GRANDE","value":17300}], "note": null, "featured": false, "position": 330 },
+        { "name": "Un Viaje de Papas", "description": "Salsa, muzarrella, mini papas pay, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":8600},{"label":"GRANDE","value":14100}], "note": "+ alioli $600", "featured": false, "position": 340 },
+        { "name": "Burrata y Mortadela", "description": "Salsa, muzarrella, mortadela con pistacho, burrata, tomates asados y aceitunas negras", "prices": [{"label":"CHICA","value":10800},{"label":"GRANDE","value":19800}], "note": null, "featured": false, "position": 350 },
+        { "name": "Burrata y Jamón Crudo", "description": "Salsa, muzarrella, jamón crudo, burrata, rúcula, tomates asados y aceitunas negras", "prices": [{"label":"CHICA","value":12300},{"label":"GRANDE","value":22600}], "note": null, "featured": false, "position": 360 },
+        { "name": "Carne", "description": "Salsa, muzarrella, carne braseada, cebolla caramelizada, hierbas, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":11600},{"label":"GRANDE","value":21300}], "note": null, "featured": false, "position": 370 },
+        { "name": "Cherry Bocconcinos", "description": "Salsa, muzarrella, cherrys asados, bocconcinos, pesto de albahaca y nuez, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":11900},{"label":"GRANDE","value":21800}], "note": null, "featured": false, "position": 380 },
+        { "name": "Chayera", "description": "Salsa, muzarrella, tomates cherry, aceite de albahaca, bolitas de muzzarella crocantes, tomates asados y aceitunas", "prices": [{"label":"CHICA","value":10200},{"label":"GRANDE","value":17500}], "note": null, "featured": false, "position": 390 },
+        { "name": "Box Degustación de Pizzas", "description": "9 pizzetas para compartir: Napolitana · Calabresa · Muzza · Capresse · Fugazza · Cantimpalo · 4 Quesos · Jamón y Morrón · Panceta", "prices": [{"label":"","value":19800}], "note": null, "featured": true, "position": 400 }
+      ]
+    },
+    {
+      "name": "Sandwich Solo para Valientes",
+      "subtitle": "Masa de pizza · Con papas fritas · Comen entre 7 y 8 personas · Aderezo Fortunella",
+      "layout_type": "list",
+      "title_variant": "valientes",
+      "position": 20,
+      "items": [
+        { "name": "Milanesa de Carne", "description": "Masa de pizza, tomate, lechuga, huevo frito, jamón, queso, milanesa de carne y aderezo Fortunella", "prices": [{"label":"","value":75000}], "note": null, "featured": false, "position": 10 },
+        { "name": "Milanesa de Pollo", "description": "Masa de pizza, tomate, lechuga, huevo frito, jamón, queso, milanesa de pollo y aderezo Fortunella", "prices": [{"label":"","value":70000}], "note": null, "featured": false, "position": 20 },
+        { "name": "Lomito", "description": "Masa de pizza, tomate, lechuga, huevo frito, jamón, queso, lomo y aderezo Fortunella", "prices": [{"label":"","value":85000}], "note": null, "featured": false, "position": 30 }
+      ]
+    },
+    {
+      "name": "Focacceria",
+      "subtitle": "Sandwiches con masa de focaccia artesanal",
+      "layout_type": "list",
+      "title_variant": "orange",
+      "position": 30,
+      "items": [
+        { "name": "Jamón Crudo", "description": "Jamón crudo, queso tybo, lechuga o rúcula y aderezo Fortunella", "prices": [{"label":"","value":10000}], "note": null, "featured": false, "subgroup": "Clásicos", "position": 10 },
+        { "name": "Jamón Cocido", "description": "Jamón cocido, queso tybo, lechuga, tomate y aderezo Fortunella", "prices": [{"label":"","value":9300}], "note": null, "featured": false, "subgroup": "Clásicos", "position": 20 },
+        { "name": "Milanesa de Carne", "description": "Milanesa de carne, jamón cocido, lechuga, tomate y aderezo Fortunella", "prices": [{"label":"","value":11000}], "note": null, "featured": false, "subgroup": "Clásicos", "position": 30 },
+        { "name": "Milanesa de Pollo", "description": "Milanesa de pollo, queso tybo, lechuga, tomate y aderezo Fortunella", "prices": [{"label":"","value":10000}], "note": null, "featured": false, "subgroup": "Clásicos", "position": 40 },
+        { "name": "Mortadela", "description": "Mortadela con pistachos, stracciatella, pesto, tomates asados, pickles de pepino, rúcula", "prices": [{"label":"","value":13000}], "note": null, "featured": false, "subgroup": "Especiales", "position": 50 },
+        { "name": "Jamón Crudo Especial", "description": "Jamón crudo, stracciatella, rúcula, tomates asados, aderezo Fortunella y gotas de limón fresco", "prices": [{"label":"","value":15500}], "note": null, "featured": false, "subgroup": "Especiales", "position": 60 },
+        { "name": "Porcheta", "description": "Arrollado de cerdo con limón y hierbas, berenjenas al escabeche, cebollas en pickles y aderezo de mostaza", "prices": [{"label":"","value":10800}], "note": null, "featured": false, "subgroup": "Especiales", "position": 70 },
+        { "name": "Carne", "description": "Carne, cebolla en pickles, tomates asados, morrones asados, rúcula y aderezo de chimichurri", "prices": [{"label":"","value":11500}], "note": null, "featured": false, "subgroup": "Especiales", "position": 80 },
+        { "name": "Panceta Ahumada", "description": "Panceta ahumada, cebolla morada con limón, repollo morado y aderezo de tomate", "prices": [{"label":"","value":10500}], "note": null, "featured": false, "subgroup": "Especiales", "position": 90 },
+        { "name": "Veggie", "description": "Stracciatella, escabeche de berenjenas, rúcula, tomates asados y pesto", "prices": [{"label":"","value":11000}], "note": null, "featured": false, "subgroup": "Especiales", "position": 100 },
+        { "name": "Bondiola Braseada", "description": "Cerdo desmenuzado con salsa barbacoa, repollo blanco y morado al limón, pickles de cebolla morada, panceta crocante y aderezo de mostaza", "prices": [{"label":"","value":13000}], "note": null, "featured": false, "subgroup": "Especiales", "position": 110 }
+      ]
+    },
+    {
+      "name": "Empanadas",
+      "subtitle": null,
+      "layout_type": "emp-table",
+      "title_variant": "default",
+      "position": 40,
+      "items": [
+        { "name": "Verduras", "description": null, "prices": [{"label":"UNID.","value":1500},{"label":"½ DOC.","value":7500},{"label":"DOC.","value":13000}], "note": null, "featured": false, "position": 10 },
+        { "name": "Jamón y Queso", "description": null, "prices": [{"label":"UNID.","value":1700},{"label":"½ DOC.","value":9000},{"label":"DOC.","value":17000}], "note": null, "featured": false, "position": 20 },
+        { "name": "Pollo", "description": null, "prices": [{"label":"UNID.","value":1800},{"label":"½ DOC.","value":9500},{"label":"DOC.","value":17000}], "note": null, "featured": false, "position": 30 },
+        { "name": "Carne", "description": null, "prices": [{"label":"UNID.","value":2000},{"label":"½ DOC.","value":10000},{"label":"DOC.","value":19000}], "note": null, "featured": false, "position": 40 },
+        { "name": "Carne Fritas", "description": null, "prices": [{"label":"UNID.","value":2000},{"label":"½ DOC.","value":10000},{"label":"DOC.","value":19000}], "note": null, "featured": false, "position": 50 },
+        { "name": "Capresse", "description": null, "prices": [{"label":"UNID.","value":1700},{"label":"½ DOC.","value":9000},{"label":"DOC.","value":17000}], "note": null, "featured": false, "position": 60 },
+        { "name": "Árabes", "description": null, "prices": [{"label":"UNID.","value":2500},{"label":"½ DOC.","value":15000},{"label":"DOC.","value":27000}], "note": null, "featured": false, "position": 70 },
+        { "name": "Carne a Cuchillo", "description": null, "prices": [{"label":"UNID.","value":2300},{"label":"½ DOC.","value":12000},{"label":"DOC.","value":23000}], "note": null, "featured": false, "position": 80 },
+        { "name": "Cebolla y Muzza", "description": null, "prices": [{"label":"UNID.","value":2300},{"label":"½ DOC.","value":8500},{"label":"DOC.","value":15000}], "note": null, "featured": false, "position": 90 },
+        { "name": "Acelga y Provolone", "description": null, "prices": [{"label":"UNID.","value":1700},{"label":"½ DOC.","value":8000},{"label":"DOC.","value":15000}], "note": null, "featured": false, "position": 100 },
+        { "name": "Humita", "description": null, "prices": [{"label":"UNID.","value":1900},{"label":"½ DOC.","value":9800},{"label":"DOC.","value":17500}], "note": null, "featured": false, "position": 110 }
+      ]
+    },
+    {
+      "name": "Ensalada",
+      "subtitle": null,
+      "layout_type": "list",
+      "title_variant": "default",
+      "position": 50,
+      "items": [
+        { "name": "Ensalada César", "description": null, "prices": [{"label":"","value":9800}], "note": null, "featured": false, "position": 10 }
+      ]
+    },
+    {
+      "name": "Postres",
+      "subtitle": null,
+      "layout_type": "postre-cards",
+      "title_variant": "default",
+      "position": 60,
+      "items": [
+        { "name": "Flan", "description": null, "prices": [{"label":"","value":3500}], "note": null, "featured": false, "position": 10 },
+        { "name": "Tiramisú", "description": null, "prices": [{"label":"","value":6500}], "note": null, "featured": false, "position": 20 }
+      ]
+    },
+    {
+      "name": "Bebidas",
+      "subtitle": null,
+      "layout_type": "bebidas-grid",
+      "title_variant": "default",
+      "position": 70,
+      "items": [
+        { "name": "Agua", "description": null, "prices": [{"label":"","value":2000}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 10 },
+        { "name": "Agua saborizada", "description": null, "prices": [{"label":"","value":3000}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 20 },
+        { "name": "Coca Zero 500ml", "description": null, "prices": [{"label":"","value":3800}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 30 },
+        { "name": "Coca Común 500ml", "description": null, "prices": [{"label":"","value":3800}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 40 },
+        { "name": "Fanta 500ml", "description": null, "prices": [{"label":"","value":3800}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 50 },
+        { "name": "Sprite 500ml", "description": null, "prices": [{"label":"","value":3800}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 60 },
+        { "name": "Coca Común 1,5L", "description": null, "prices": [{"label":"","value":6000}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 70 },
+        { "name": "Coca Zero 1,5L", "description": null, "prices": [{"label":"","value":6000}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 80 },
+        { "name": "Fanta 1,5L", "description": null, "prices": [{"label":"","value":6000}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 90 },
+        { "name": "Sprite 1,5L", "description": null, "prices": [{"label":"","value":6000}], "note": null, "featured": false, "subgroup": "Sin Alcohol", "position": 100 },
+        { "name": "Budweiser lata 473ml", "description": null, "prices": [{"label":"","value":3500}], "note": null, "featured": false, "subgroup": "Cervezas", "position": 110 },
+        { "name": "Corona 330ml", "description": null, "prices": [{"label":"","value":4000}], "note": null, "featured": false, "subgroup": "Cervezas", "position": 120 },
+        { "name": "Corona 710ml", "description": null, "prices": [{"label":"","value":6500}], "note": null, "featured": false, "subgroup": "Cervezas", "position": 130 }
+      ]
+    }
+  ]
+}
