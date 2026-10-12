@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patio Fortunella — Carta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Great+Vibes&family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;1,300&family=Barlow+Condensed:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:    #0F2560;
+  --blue2:   #0F2560;
+  --orange:  #CC3300;
+  --cream:   #F5F0E6;
+  --cream2:  #EDE7D5;
+  --cream3:  #E4DBCA;
+}
+
+body {
+  background: var(--cream2);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page {
+  max-width: 900px;
+  margin: 32px auto;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 60px rgba(15,37,96,0.18);
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed var(--blue);
+  opacity: 0.20;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-inner { position: relative; z-index: 1; padding: 32px 40px; }
+
+/* ─── HEADER ─── */
+.header-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 150px;
+  gap: 0 22px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* Fact blocks (left) */
+.facts-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 0;
+  align-self: center;
+}
+.fact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fact-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--orange);
+  line-height: 1;
+}
+.fact-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--blue);
+  opacity: 0.82;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+.fact-dots {
+  font-size: 8px;
+  color: var(--blue);
+  opacity: 0.18;
+  letter-spacing: 0.18em;
+  margin: 1px 0;
+}
+
+/* Center hero */
+.hero-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+  width: 100%;
+  align-self: center;
+}
+.hero-script {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange);
+  line-height: 1;
+  text-align: center;
+}
+.hero-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 98px;
+  color: var(--blue);
+  line-height: 0.9;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.hero-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.40em;
+  color: var(--blue);
+  text-align: center;
+  margin-top: 8px;
+  width: 100%;
+}
+.hero-est {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  opacity: 0.44;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+.hero-est::before, .hero-est::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 30px;
+  background: var(--blue);
+  opacity: 0.25;
+}
+
+/* Right col */
+.right-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.right-col img {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  width: 230px;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+}
+.hero-leaf-svg {
+  width: 34px;
+  height: 56px;
+  vertical-align: middle;
+  display: inline-block;
+  opacity: 0.85;
+}
+.hero-leaf-svg.left { margin: 0 -6px 0 8px; }
+.hero-leaf-svg.right { margin: 0 8px 0 4px; }
+.pizza-svg { display: none; }
+.top-desc { display: none; }
+.mobile-pizza { display: none; }
+
+/* ─── NOCHE BANNER ─── */
+.noche-banner {
+  background: var(--blue);
+  margin: 0 -40px;
+  padding: 12px 40px 10px;
+  text-align: center;
+}
+.noche-banner-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.38em;
+  color: var(--cream);
+  line-height: 1;
+}
+.noche-banner-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-top: 5px;
+}
+
+/* ─── DIVIDERS ─── */
+.dash-h {
+  width: 100%;
+  border: none;
+  border-top: 1px dashed var(--blue);
+  opacity: 0.22;
+  margin: 6px 0;
+}
+.dash-h.orange { border-color: var(--orange); opacity: 0.45; }
+
+.asterisk-row {
+  font-size: 9px;
+  letter-spacing: 0.40em;
+  color: var(--blue);
+  opacity: 0.22;
+  text-align: center;
+  margin: 20px 0 4px;
+}
+
+/* ─── SECTION ─── */
+.section { margin-top: 28px; }
+
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--blue);
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2.5px solid var(--blue);
+  display: block;
+  margin-bottom: 2px;
+}
+.sec-title.orange {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+.sec-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0.56;
+  margin-top: 5px;
+  margin-bottom: 14px;
+}
+
+/* ─── PIZZA GRID ─── */
+.pizza-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(15,37,96,0.10);
+  border: 1px solid rgba(15,37,96,0.10);
+}
+
+.pizza-item {
+  background: var(--cream);
+  padding: 10px 12px 8px;
+}
+.pizza-item:hover { background: var(--cream2); transition: background 0.15s; }
+
+.pizza-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  line-height: 1.12;
+  margin-bottom: 3px;
+}
+
+.pizza-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--blue);
+  opacity: 0.86;
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+
+.pizza-prices {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+}
+
+/* ─── BOX DEGUSTACIÓN ─── */
+.box-degu {
+  border: 1.5px solid var(--orange);
+  padding: 14px 20px;
+  margin-top: 1px;
+  background: var(--cream);
+  grid-column: span 2;
+  text-align: center;
+}
+.box-degu-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.box-degu-body {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  color: var(--blue);
+  opacity: 0.84;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+.box-degu-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  color: var(--orange);
+  letter-spacing: 0.06em;
+  margin-top: 5px;
+}
+
+/* ─── LIST ITEMS (sandwiches, ensalada) ─── */
+.items-list { border-top: 1px solid rgba(15,37,96,0.10); }
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(15,37,96,0.10);
+}
+
+.item-left { flex: 1; }
+
+.item-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  line-height: 1.12;
+}
+
+.item-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--blue);
+  opacity: 0.86;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.item-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+  white-space: nowrap;
+}
+
+/* ─── VALIENTES HEADER ─── */
+.valientes-header {
+  background: var(--orange);
+  color: var(--cream);
+  padding: 9px 14px;
+  margin-bottom: 0;
+}
+.valientes-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+.valientes-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ─── FOCACCERIA ─── */
+.foc-sub-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  opacity: 1;
+  margin: 14px 0 6px;
+  border-bottom: 0.8px solid rgba(15,37,96,0.14);
+  padding-bottom: 3px;
+  text-transform: uppercase;
+}
+
+/* ─── EMPANADAS TABLE ─── */
+.emp-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+
+.emp-table thead th {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  opacity: 0.58;
+  text-align: right;
+  padding: 0 0 6px 10px;
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.emp-table thead th:first-child { text-align: left; padding-left: 0; }
+
+.emp-table tbody tr { border-bottom: 0.5px solid rgba(15,37,96,0.07); }
+
+.emp-table tbody td {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  padding: 6px 0;
+  vertical-align: middle;
+}
+.emp-table tbody td.emp-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--orange);
+  text-align: right;
+  font-weight: 400;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+/* ─── POSTRES ─── */
+.postres-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.postre-card {
+  background: var(--cream2);
+  border: 1px dashed rgba(15,37,96,0.22);
+  padding: 10px 20px;
+  flex: 1;
+  text-align: center;
+}
+.postre-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.10em;
+  color: var(--blue);
+}
+.postre-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ─── BEBIDAS ─── */
+.bebidas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  margin-top: 8px;
+}
+.bebida-block { display: flex; flex-direction: column; gap: 0; }
+
+.bebidas-group-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  opacity: 0.56;
+  margin: 10px 0 5px;
+  border-bottom: 0.8px dashed rgba(15,37,96,0.16);
+  padding-bottom: 3px;
+}
+.bebida-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+.bebida-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.03em;
+}
+.bebida-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--orange);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+/* ─── BLOQUE INFERIOR UNIFICADO ─── */
+.bottom-block {
+  background: var(--blue);
+  margin: 28px -40px -32px;
+  padding: 14px 40px 24px;
+  border-top: 2px solid rgba(204,51,0,0.40);
+}
+
+.also-ask {
+  margin: 0 0 14px;
+  padding: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.also-ask-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+
+.also-ask-items {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: rgba(245,240,230,0.56);
+  line-height: 1.6;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: transparent;
+  margin: 0;
+  padding: 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: none;
+}
+.footer-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 54px;
+  color: var(--cream);
+  line-height: 0.82;
+  font-weight: 400;
+}
+.footer-center { text-align: center; }
+.footer-buen {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--orange);
+}
+.footer-tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(245,240,230,0.40);
+  margin-top: 3px;
+}
+.footer-right { text-align: right; }
+.footer-info {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(245,240,230,0.46);
+  line-height: 1.75;
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE — MOBILE
+────────────────────────────────────── */
+@media (max-width: 768px) {
+  body { background: var(--cream); }
+
+  .page { margin: 0; box-shadow: none; }
+  .page::before { display: none; }
+  .page-inner { padding: 20px 16px 16px; }
+
+  /* Header: columna única */
+  .header-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+
+  /* Ocultar right-col (absoluta) en mobile */
+  .right-col { display: none; }
+
+  /* Orden: 1-título, 2-pizza, 3-facts */
+  .hero-col { order: 1; }
+
+  .mobile-pizza {
+    display: flex;
+    order: 2;
+    justify-content: center;
+    margin: 8px 0 10px;
+  }
+  .mobile-pizza img {
+    width: 120px;
+    height: auto;
+    display: block;
+  }
+
+  /* Facts: columna única, centrada, orden 3 */
+  .facts-col {
+    order: 3;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .fact-dots { display: none; }
+  .fact-label { font-size: 9px; }
+  .fact-value { font-size: 10px; text-align: center; }
+
+  /* Hero */
+  .hero-name { font-size: 64px; }
+  .hero-sub { font-size: 13px; letter-spacing: 0.30em; margin-top: 4px; }
+  .hero-est { font-size: 9px; margin-top: 6px; }
+
+  /* Banner */
+  .noche-banner { margin: 0 -16px; padding: 10px 16px 8px; }
+  .noche-banner-title { font-size: 16px; letter-spacing: 0.24em; }
+  .noche-banner-sub { font-size: 9px; letter-spacing: 0.10em; }
+
+  /* Sections */
+  .section { margin-top: 20px; }
+  .sec-title { font-size: 22px; }
+  .sec-sub { font-size: 9.5px; letter-spacing: 0.12em; }
+
+  /* Pizza items */
+  .pizza-name { font-size: 13px; }
+  .pizza-desc { font-size: 11px; }
+  .pizza-prices { font-size: 11px; }
+
+  /* List items */
+  .item-name { font-size: 13px; }
+  .item-desc { font-size: 11px; }
+  .item-price { font-size: 13px; }
+
+  /* Bebidas */
+  .bebidas-grid { grid-template-columns: 1fr; }
+
+  /* Bottom & footer */
+  .bottom-block { margin: 20px -16px -16px; padding: 12px 16px 20px; }
+  .also-ask-title { font-size: 22px; }
+  .footer { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+  .footer-logo { font-size: 40px; }
+  .footer-center, .footer-right { text-align: center; }
+}
+
+/* Pantallas muy chicas (≤ 400px) */
+@media (max-width: 400px) {
+  .hero-name { font-size: 54px; }
+  .mobile-pizza img { width: 100px; }
+  .pizza-grid { grid-template-columns: 1fr; }
+  .pizza-name { font-size: 12px; }
+  .pizza-desc { font-size: 10.5px; }
+}
+
+/* ──────────────────────────────────────
+   PRINT — A4
+────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.2cm 1cm;
+  }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body { background: white !important; margin: 0; padding: 0; }
+
+  .page {
+    max-width: 100%;
+    margin: 0;
+    box-shadow: none;
+    background: var(--cream) !important;
+  }
+
+  .page-inner { padding: 20px 28px; }
+
+  /* Pizza ajustada para A4 */
+  .right-col img {
+    width: 230px;
+    top: -20px;
+    right: -28px;
+  }
+
+  /* Banner y bottom con márgenes ajustados a A4 */
+  .noche-banner { margin: 0 -28px; }
+  .bottom-block { margin: 28px -28px -20px; }
+
+  /* Evitar cortes dentro de items */
+  .pizza-item,
+  .list-item,
+  .foc-item,
+  .postre-card { break-inside: avoid; }
+
+  .section { break-inside: avoid; }
+  .noche-banner { break-after: avoid; }
+  .pizza-item:hover { background: var(--cream) !important; }
+}
+
+</style>
+</head>
+<body data-menu="patio">
+
+<div class="page">
+<div class="page-inner">
+
+  <!-- ─── HEADER ─── -->
+  <div class="header-grid">
+
+    <div class="facts-col">
+      <div class="fact-block">
+        <span class="fact-label">Masa Madre</span>
+        <span class="fact-value">Fermentación lenta, 24 horas de reposo</span>
+      </div>
+      <span class="fact-dots">· · · · · · · ·</span>
+      <div class="fact-block">
+        <span class="fact-label">Ingredientes Frescos</span>
+        <span class="fact-value">Seleccionados cada día, de productores locales</span>
+      </div>
+      <span class="fact-dots">· · · · · · · ·</span>
+      <div class="fact-block">
+        <span class="fact-label">Horno de Barro</span>
+        <span class="fact-value">Cocción a 400°, corteza crujiente y ligera</span>
+      </div>
+    </div>
+
+    <div class="hero-col">
+      <div class="hero-name"><svg class="hero-leaf-svg left" viewBox="0 0 24 38" xmlns="http://www.w3.org/2000/svg" fill="#0F2560" transform-origin="center bottom"><g transform="rotate(-12 12 38)"><path d="M12 36 C11 28 10 18 13 3" stroke="#0F2560" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M12 31 C5 30 1 23 5 18 C8 23 10 28 12 31Z"/><path d="M12 31 C18 28 20 22 17 17 C14 22 13 27 12 31Z"/><path d="M12 23 C5 21 2 14 6 10 C9 15 11 20 12 23Z"/><path d="M12 23 C18 20 21 14 17 10 C14 15 13 20 12 23Z"/><path d="M13 15 C7 13 5 7 9 4 C11 8 12 12 13 15Z"/><path d="M13 15 C18 12 19 6 16 4 C13 8 13 12 13 15Z"/><path d="M13 5 C10 2 11 0 13 0 C15 0 15 2 13 5Z"/></g></svg>Fortunella<svg class="hero-leaf-svg right" viewBox="0 0 24 38" xmlns="http://www.w3.org/2000/svg" fill="#0F2560"><g transform="rotate(12 12 38)"><path d="M12 36 C13 28 14 18 11 3" stroke="#0F2560" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M12 31 C5 28 3 22 7 17 C10 22 11 27 12 31Z"/><path d="M12 31 C19 30 23 23 19 18 C16 23 14 28 12 31Z"/><path d="M12 23 C6 20 3 14 7 10 C10 15 11 20 12 23Z"/><path d="M12 23 C18 21 21 14 18 10 C15 15 13 20 12 23Z"/><path d="M11 15 C6 12 5 6 8 4 C10 8 11 12 11 15Z"/><path d="M11 15 C17 13 19 7 16 4 C14 8 12 12 11 15Z"/><path d="M11 5 C9 2 9 0 11 0 C13 0 13 2 11 5Z"/></g></svg></div>
+      <div class="hero-sub">Pizzas</div>
+      <div class="hero-est">La Rioja, Argentina &nbsp;·&nbsp; Est. 2020</div>
+    </div>
+
+    <div class="mobile-pizza">
+      <img src="pizza-transparent.png" alt="Pizza Fortunella">
+    </div>
+
+    <div class="right-col">
+      <img src="pizza-transparent.png" alt="Pizza Fortunella">
+    </div>
+
+  </div>
+
+  <!-- ─── BANNER PATIO ─── -->
+  <div class="noche-banner">
+    <div class="noche-banner-title">Patio Fortunella · Carta</div>
+    <div class="noche-banner-sub">Empanadas · Sándwiches · Pizzas · Ensaladas · Postres · Bebidas</div>
+  </div>
+
+  <!-- ─── MENÚ DINÁMICO (generado por js/menu.js desde Supabase, con fallback estático) ─── -->
+  <div id="menu-root">
+    <div class="section"><span class="sec-title">Cargando menú…</span></div>
+  </div>
+
+  <!-- ─── BLOQUE INFERIOR UNIFICADO ─── -->
+  <div class="bottom-block">
+    <div class="also-ask">
+      <div class="also-ask-title">✦ También podés pedir ✦</div>
+      <div class="also-ask-items">Mitad y mitad en pizzas &nbsp;·&nbsp; Ingredientes adicionales &nbsp;·&nbsp; Pizza de molde &nbsp;·&nbsp; Empanadas mixtas</div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-logo">Fortunella</div>
+      <div class="footer-center">
+        <div class="footer-buen">¡buen provecho!</div>
+        <div class="footer-tagline">Gracias por elegirnos</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-info">@fortunella.pizzas</div>
+        <div class="footer-info">La Rioja, Argentina · Est. 2020</div>
+      </div>
+    </footer>
+  </div>
+
+</div><!-- /page-inner -->
+</div><!-- /page -->
+  <script type="module" src="js/menu.js"></script>
+</body>
+</html>

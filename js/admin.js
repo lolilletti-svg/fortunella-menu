@@ -16,7 +16,16 @@ const VARIANTS = [
   ["valientes", "Encabezado especial (caja naranja)"],
 ];
 
+const MENUS = [
+  ["fortunella", "Menú Fortunella (QR actual)"],
+  ["patio", "Patio Fortunella (inauguración)"],
+];
+
+const MENU_PAGES = { fortunella: "index.html", patio: "patio.html" };
+
 let sb = null;
+let currentMenu = localStorage.getItem("fortunella-admin-menu");
+if (!MENU_PAGES[currentMenu]) currentMenu = "fortunella";
 let modules = [];
 let editing = null; // { moduleId, item|null }
 
@@ -61,6 +70,21 @@ $("logout").addEventListener("click", async () => {
 });
 
 async function enterApp() {
+  const sel = $("menu-select");
+  sel.textContent = "";
+  for (const [val, label] of MENUS) {
+    const o = document.createElement("option"); o.value = val; o.textContent = label;
+    if (val === currentMenu) o.selected = true;
+    sel.appendChild(o);
+  }
+  const syncViewLink = () => ($("view-link").href = MENU_PAGES[currentMenu]);
+  syncViewLink();
+  sel.onchange = () => {
+    currentMenu = sel.value;
+    localStorage.setItem("fortunella-admin-menu", currentMenu);
+    syncViewLink();
+    loadModules();
+  };
   show("login-view", false);
   show("app-view");
   await loadModules();
@@ -68,7 +92,7 @@ async function enterApp() {
 
 // ─── Carga ────────────────────────────────────────────────────────
 async function loadModules() {
-  const { data, error } = await sb.from("modules").select("*, items(*)").order("position");
+  const { data, error } = await sb.from("modules").select("*, items(*)").eq("menu", currentMenu).order("position");
   if (error) return flash("Error al cargar: " + error.message, true);
   modules = (data || []).map((m) => ({
     ...m,
@@ -200,7 +224,7 @@ async function saveModule(mod) {
 async function addModule() {
   const maxPos = modules.reduce((m, x) => Math.max(m, x.position), 0);
   const { error } = await sb.from("modules").insert({
-    name: "Nuevo módulo", layout_type: "list", title_variant: "default", position: maxPos + 10,
+    menu: currentMenu, name: "Nuevo módulo", layout_type: "list", title_variant: "default", position: maxPos + 10,
   });
   error ? flash("Error: " + error.message, true) : (flash("Módulo creado."), loadModules());
 }
@@ -239,7 +263,7 @@ function openItem(mod, item) {
     const o = document.createElement("option"); o.value = s; dl.appendChild(o);
   });
 
-  renderPriceRows(item?.prices || [{ label: "", value: 0 }]);
+  renderPriceRows(item?.prices?.length ? item.prices : [{ label: "", value: "" }]);
   $("item-msg").textContent = "";
   $("item-overlay").classList.add("show");
 }

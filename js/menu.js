@@ -6,7 +6,9 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.7";
 import { SUPABASE_URL, SUPABASE_ANON_KEY, supabaseConfigured } from "./config.js";
 import { renderMenu } from "./render.js";
 
-const FALLBACK_URL = "data/menu-fallback.json";
+// Cada página elige su carta con <body data-menu="...">; sin atributo = menú Fortunella.
+const MENU = document.body.dataset.menu || "fortunella";
+const FALLBACK_URL = MENU === "fortunella" ? "data/menu-fallback.json" : `data/${MENU}-fallback.json`;
 
 async function loadData() {
   if (supabaseConfigured()) {
@@ -15,6 +17,7 @@ async function loadData() {
       const { data, error } = await sb
         .from("modules")
         .select("*, items(*)")
+        .eq("menu", MENU)
         .order("position", { ascending: true });
       if (error) throw error;
       if (data && data.length) {
