@@ -1,9 +1,9 @@
-# Genera patio-verano.html a partir de patio.html (mismo CSS base + capa "verano").
+# Genera patio-verano.html a partir de base-patio.html (la primera versión de la carta Patio) (mismo CSS base + capa "verano").
 # Uso: python3 tools/patio-verano/make_verano.py .   (desde la raíz del proyecto)
 # Editar verano.css / verano.js y volver a correrlo; el HTML resultante es autocontenido.
 import sys, os
 root = sys.argv[1]
-s = open(os.path.join(root, "patio.html"), encoding="utf-8").read()
+s = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "base-patio.html"), encoding="utf-8").read()
 lines = s.split("\n")
 
 # Marcado del logo (con las ramitas) tal cual el original
