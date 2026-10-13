@@ -1,5 +1,6 @@
 # Genera patio-verano.html a partir de base-patio.html (la primera versión de la carta Patio) (mismo CSS base + capa "verano").
-# Uso: python3 tools/patio-verano/make_verano.py .   (desde la raíz del proyecto)
+# Uso: python3 tools/patio-verano/make_verano.py . [archivo_salida]   (desde la raíz del proyecto)
+# Para publicar en fortunella-pizzas.github.io usar tools/patio-verano/publicar.sh
 # Editar verano.css / verano.js y volver a correrlo; el HTML resultante es autocontenido.
 import sys, os
 root = sys.argv[1]
@@ -74,5 +75,6 @@ js = open(os.path.join(os.path.dirname(__file__), "verano.js"), encoding="utf-8"
 s = s.replace("</style>", css + "\n</style>", 1)
 s = s.replace('  <script type="module" src="js/menu.js"></script>',
               '  <script type="module">\n' + js + '\n  </script>\n  <script type="module" src="js/menu.js"></script>')
-open(os.path.join(root, "patio-verano.html"), "w", encoding="utf-8").write(s)
+out = sys.argv[2] if len(sys.argv) > 2 else os.path.join(root, "_preview-patio.html")  # vista previa local (no se sube)
+open(out, "w", encoding="utf-8").write(s)
 print("ok", len(s)//1024, "KB")

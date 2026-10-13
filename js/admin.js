@@ -21,7 +21,7 @@ const MENUS = [
   ["patio", "Patio Fortunella (inauguración)"],
 ];
 
-const MENU_PAGES = { fortunella: "index.html", patio: "patio-verano.html" };
+const MENU_PAGES = { fortunella: "index.html", patio: "https://fortunella-pizzas.github.io/" };
 
 let sb = null;
 let currentMenu = localStorage.getItem("fortunella-admin-menu");

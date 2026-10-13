@@ -7,3 +7,6 @@ tools/frames/
 
 # Entorno virtual de Python (herramientas locales)
 venv/
+
+# Vista previa local de la carta Patio (se genera con tools/patio-verano/make_verano.py)
+_preview-patio.html
