@@ -39,6 +39,8 @@ async function loadData() {
   try {
     const modules = await loadData();
     renderMenu(root, modules);
+    // Para decoraciones propias de cada página (ej. patio-verano.html).
+    document.dispatchEvent(new CustomEvent("menu:rendered", { detail: { modules } }));
   } catch (e) {
     console.error("[menu] Error fatal cargando el menú:", e);
     if (root) {

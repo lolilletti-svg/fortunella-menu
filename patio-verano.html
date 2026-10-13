@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patio Fortunella — Verano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Great+Vibes&family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;1,300&family=Barlow+Condensed:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:    #0F2560;
+  --blue2:   #0F2560;
+  --orange:  #CC3300;
+  --cream:   #F5F0E6;
+  --cream2:  #EDE7D5;
+  --cream3:  #E4DBCA;
+}
+
+body {
+  background: var(--cream2);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page {
+  max-width: 900px;
+  margin: 32px auto;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 60px rgba(15,37,96,0.18);
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed var(--blue);
+  opacity: 0.20;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-inner { position: relative; z-index: 1; padding: 32px 40px; }
+
+/* ─── HEADER ─── */
+.header-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 150px;
+  gap: 0 22px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* Fact blocks (left) */
+.facts-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 0;
+  align-self: center;
+}
+.fact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fact-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--orange);
+  line-height: 1;
+}
+.fact-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--blue);
+  opacity: 0.82;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+.fact-dots {
+  font-size: 8px;
+  color: var(--blue);
+  opacity: 0.18;
+  letter-spacing: 0.18em;
+  margin: 1px 0;
+}
+
+/* Center hero */
+.hero-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+  width: 100%;
+  align-self: center;
+}
+.hero-script {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange);
+  line-height: 1;
+  text-align: center;
+}
+.hero-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 98px;
+  color: var(--blue);
+  line-height: 0.9;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.hero-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.40em;
+  color: var(--blue);
+  text-align: center;
+  margin-top: 8px;
+  width: 100%;
+}
+.hero-est {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  opacity: 0.44;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+.hero-est::before, .hero-est::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 30px;
+  background: var(--blue);
+  opacity: 0.25;
+}
+
+/* Right col */
+.right-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.right-col img {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  width: 230px;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+}
+.hero-leaf-svg {
+  width: 34px;
+  height: 56px;
+  vertical-align: middle;
+  display: inline-block;
+  opacity: 0.85;
+}
+.hero-leaf-svg.left { margin: 0 -6px 0 8px; }
+.hero-leaf-svg.right { margin: 0 8px 0 4px; }
+.pizza-svg { display: none; }
+.top-desc { display: none; }
+.mobile-pizza { display: none; }
+
+/* ─── NOCHE BANNER ─── */
+.noche-banner {
+  background: var(--blue);
+  margin: 0 -40px;
+  padding: 12px 40px 10px;
+  text-align: center;
+}
+.noche-banner-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.38em;
+  color: var(--cream);
+  line-height: 1;
+}
+.noche-banner-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-top: 5px;
+}
+
+/* ─── DIVIDERS ─── */
+.dash-h {
+  width: 100%;
+  border: none;
+  border-top: 1px dashed var(--blue);
+  opacity: 0.22;
+  margin: 6px 0;
+}
+.dash-h.orange { border-color: var(--orange); opacity: 0.45; }
+
+.asterisk-row {
+  font-size: 9px;
+  letter-spacing: 0.40em;
+  color: var(--blue);
+  opacity: 0.22;
+  text-align: center;
+  margin: 20px 0 4px;
+}
+
+/* ─── SECTION ─── */
+.section { margin-top: 28px; }
+
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--blue);
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2.5px solid var(--blue);
+  display: block;
+  margin-bottom: 2px;
+}
+.sec-title.orange {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+.sec-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0.56;
+  margin-top: 5px;
+  margin-bottom: 14px;
+}
+
+/* ─── PIZZA GRID ─── */
+.pizza-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(15,37,96,0.10);
+  border: 1px solid rgba(15,37,96,0.10);
+}
+
+.pizza-item {
+  background: var(--cream);
+  padding: 10px 12px 8px;
+}
+.pizza-item:hover { background: var(--cream2); transition: background 0.15s; }
+
+.pizza-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  line-height: 1.12;
+  margin-bottom: 3px;
+}
+
+.pizza-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--blue);
+  opacity: 0.86;
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+
+.pizza-prices {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+}
+
+/* ─── BOX DEGUSTACIÓN ─── */
+.box-degu {
+  border: 1.5px solid var(--orange);
+  padding: 14px 20px;
+  margin-top: 1px;
+  background: var(--cream);
+  grid-column: span 2;
+  text-align: center;
+}
+.box-degu-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.box-degu-body {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  color: var(--blue);
+  opacity: 0.84;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+.box-degu-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  color: var(--orange);
+  letter-spacing: 0.06em;
+  margin-top: 5px;
+}
+
+/* ─── LIST ITEMS (sandwiches, ensalada) ─── */
+.items-list { border-top: 1px solid rgba(15,37,96,0.10); }
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(15,37,96,0.10);
+}
+
+.item-left { flex: 1; }
+
+.item-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  line-height: 1.12;
+}
+
+.item-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--blue);
+  opacity: 0.86;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.item-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+  white-space: nowrap;
+}
+
+/* ─── VALIENTES HEADER ─── */
+.valientes-header {
+  background: var(--orange);
+  color: var(--cream);
+  padding: 9px 14px;
+  margin-bottom: 0;
+}
+.valientes-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+.valientes-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ─── FOCACCERIA ─── */
+.foc-sub-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  opacity: 1;
+  margin: 14px 0 6px;
+  border-bottom: 0.8px solid rgba(15,37,96,0.14);
+  padding-bottom: 3px;
+  text-transform: uppercase;
+}
+
+/* ─── EMPANADAS TABLE ─── */
+.emp-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+
+.emp-table thead th {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  opacity: 0.58;
+  text-align: right;
+  padding: 0 0 6px 10px;
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.emp-table thead th:first-child { text-align: left; padding-left: 0; }
+
+.emp-table tbody tr { border-bottom: 0.5px solid rgba(15,37,96,0.07); }
+
+.emp-table tbody td {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  padding: 6px 0;
+  vertical-align: middle;
+}
+.emp-table tbody td.emp-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--orange);
+  text-align: right;
+  font-weight: 400;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+/* ─── POSTRES ─── */
+.postres-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.postre-card {
+  background: var(--cream2);
+  border: 1px dashed rgba(15,37,96,0.22);
+  padding: 10px 20px;
+  flex: 1;
+  text-align: center;
+}
+.postre-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.10em;
+  color: var(--blue);
+}
+.postre-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ─── BEBIDAS ─── */
+.bebidas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  margin-top: 8px;
+}
+.bebida-block { display: flex; flex-direction: column; gap: 0; }
+
+.bebidas-group-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: var(--blue);
+  opacity: 0.56;
+  margin: 10px 0 5px;
+  border-bottom: 0.8px dashed rgba(15,37,96,0.16);
+  padding-bottom: 3px;
+}
+.bebida-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+.bebida-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.03em;
+}
+.bebida-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--orange);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+/* ─── BLOQUE INFERIOR UNIFICADO ─── */
+.bottom-block {
+  background: var(--blue);
+  margin: 28px -40px -32px;
+  padding: 14px 40px 24px;
+  border-top: 2px solid rgba(204,51,0,0.40);
+}
+
+.also-ask {
+  margin: 0 0 14px;
+  padding: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.also-ask-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.11em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+
+.also-ask-items {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: rgba(245,240,230,0.56);
+  line-height: 1.6;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: transparent;
+  margin: 0;
+  padding: 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: none;
+}
+.footer-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 54px;
+  color: var(--cream);
+  line-height: 0.82;
+  font-weight: 400;
+}
+.footer-center { text-align: center; }
+.footer-buen {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--orange);
+}
+.footer-tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(245,240,230,0.40);
+  margin-top: 3px;
+}
+.footer-right { text-align: right; }
+.footer-info {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(245,240,230,0.46);
+  line-height: 1.75;
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE — MOBILE
+────────────────────────────────────── */
+@media (max-width: 768px) {
+  body { background: var(--cream); }
+
+  .page { margin: 0; box-shadow: none; }
+  .page::before { display: none; }
+  .page-inner { padding: 20px 16px 16px; }
+
+  /* Header: columna única */
+  .header-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+
+  /* Ocultar right-col (absoluta) en mobile */
+  .right-col { display: none; }
+
+  /* Orden: 1-título, 2-pizza, 3-facts */
+  .hero-col { order: 1; }
+
+  .mobile-pizza {
+    display: flex;
+    order: 2;
+    justify-content: center;
+    margin: 8px 0 10px;
+  }
+  .mobile-pizza img {
+    width: 120px;
+    height: auto;
+    display: block;
+  }
+
+  /* Facts: columna única, centrada, orden 3 */
+  .facts-col {
+    order: 3;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .fact-dots { display: none; }
+  .fact-label { font-size: 9px; }
+  .fact-value { font-size: 10px; text-align: center; }
+
+  /* Hero */
+  .hero-name { font-size: 64px; }
+  .hero-sub { font-size: 13px; letter-spacing: 0.30em; margin-top: 4px; }
+  .hero-est { font-size: 9px; margin-top: 6px; }
+
+  /* Banner */
+  .noche-banner { margin: 0 -16px; padding: 10px 16px 8px; }
+  .noche-banner-title { font-size: 16px; letter-spacing: 0.24em; }
+  .noche-banner-sub { font-size: 9px; letter-spacing: 0.10em; }
+
+  /* Sections */
+  .section { margin-top: 20px; }
+  .sec-title { font-size: 22px; }
+  .sec-sub { font-size: 9.5px; letter-spacing: 0.12em; }
+
+  /* Pizza items */
+  .pizza-name { font-size: 13px; }
+  .pizza-desc { font-size: 11px; }
+  .pizza-prices { font-size: 11px; }
+
+  /* List items */
+  .item-name { font-size: 13px; }
+  .item-desc { font-size: 11px; }
+  .item-price { font-size: 13px; }
+
+  /* Bebidas */
+  .bebidas-grid { grid-template-columns: 1fr; }
+
+  /* Bottom & footer */
+  .bottom-block { margin: 20px -16px -16px; padding: 12px 16px 20px; }
+  .also-ask-title { font-size: 22px; }
+  .footer { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+  .footer-logo { font-size: 40px; }
+  .footer-center, .footer-right { text-align: center; }
+}
+
+/* Pantallas muy chicas (≤ 400px) */
+@media (max-width: 400px) {
+  .hero-name { font-size: 54px; }
+  .mobile-pizza img { width: 100px; }
+  .pizza-grid { grid-template-columns: 1fr; }
+  .pizza-name { font-size: 12px; }
+  .pizza-desc { font-size: 10.5px; }
+}
+
+/* ──────────────────────────────────────
+   PRINT — A4
+────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.2cm 1cm;
+  }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body { background: white !important; margin: 0; padding: 0; }
+
+  .page {
+    max-width: 100%;
+    margin: 0;
+    box-shadow: none;
+    background: var(--cream) !important;
+  }
+
+  .page-inner { padding: 20px 28px; }
+
+  /* Pizza ajustada para A4 */
+  .right-col img {
+    width: 230px;
+    top: -20px;
+    right: -28px;
+  }
+
+  /* Banner y bottom con márgenes ajustados a A4 */
+  .noche-banner { margin: 0 -28px; }
+  .bottom-block { margin: 28px -28px -20px; }
+
+  /* Evitar cortes dentro de items */
+  .pizza-item,
+  .list-item,
+  .foc-item,
+  .postre-card { break-inside: avoid; }
+
+  .section { break-inside: avoid; }
+  .noche-banner { break-after: avoid; }
+  .pizza-item:hover { background: var(--cream) !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   CAPA "VERANO" — Patio Fortunella
+   Misma paleta (azul #0F2560 · teja #CC3300 · cremas) + acuarelas.
+   Se apoya en el CSS base de arriba y solo pisa lo necesario.
+══════════════════════════════════════════════════════════ */
+.verano {
+  --paper: #FBF7EE;
+  --sun:   #F3C66B;
+  --wash-orange: rgba(236,129,33,0.10);
+  --wash-blue:   rgba(15,37,96,0.06);
+  --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M3 7 C40 2 78 10 118 5 S168 9 197 4' fill='none' stroke='%23CC3300' stroke-width='3.6' stroke-linecap='round' opacity='.85'/%3E%3Cpath d='M30 9 C70 6 120 11 170 7' fill='none' stroke='%23CC3300' stroke-width='1.2' stroke-linecap='round' opacity='.35'/%3E%3C/svg%3E");
+  --citrus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='12' fill='%23CC3300'/%3E%3Ccircle cx='14' cy='14' r='10' fill='%23FBF7EE'/%3E%3Cg stroke='%23CC3300' stroke-width='1.3' stroke-linecap='round' opacity='.75'%3E%3Cpath d='M14 5v18M5 14h18M7.6 7.6l12.8 12.8M20.4 7.6 7.6 20.4'/%3E%3C/g%3E%3Ccircle cx='14' cy='14' r='1.6' fill='%23CC3300'/%3E%3C/svg%3E");
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 60'%3E%3Cpath d='M16 0 Q-4 15 16 30 Q-4 45 16 60' fill='none' stroke='%230F2560' stroke-width='1.5' stroke-opacity='.45'/%3E%3C/svg%3E");
+}
+
+/* Fondo: papel con lavados de acuarela muy suaves */
+body.verano {
+  background:
+    radial-gradient(ellipse 70% 45% at 100% 0%, var(--wash-orange), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 0% 55%, var(--wash-blue), transparent 70%),
+    var(--cream2);
+}
+.verano .page {
+  overflow: clip;               /* permite la barra pegajosa (sticky) */
+  background:
+    radial-gradient(ellipse 80% 30% at 85% 2%, var(--wash-orange), transparent 70%),
+    radial-gradient(ellipse 70% 25% at 10% 48%, var(--wash-blue), transparent 70%),
+    radial-gradient(ellipse 70% 25% at 95% 80%, var(--wash-orange), transparent 70%),
+    var(--cream);
+}
+/* Bordes ondulados laterales (reemplazan el marco punteado) */
+.verano .page::before, .verano .page::after {
+  content: "";
+  display: block;
+  position: absolute; top: 0; bottom: 0; width: 14px;
+  inset: 0 auto 0 4px;
+  border: 0; opacity: 1;
+  background: var(--wave) left top / 14px 38px repeat-y;
+  pointer-events: none;
+  z-index: 0;
+}
+.verano .page::after { inset: 0 4px 0 auto; transform: scaleX(-1); }
+
+/* ─── Toldo de acuarela: de borde a borde de la hoja, proporción natural (recortado sin las puntas en diagonal) ─── */
+.v-awning {
+  display: block;
+  width: calc(100% + 80px);
+  max-width: none;
+  height: auto;
+  margin: -32px -40px 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Guirnalda: copias en tamaño natural repetidas de punta a punta del toldo
+   (siempre copias enteras: el script calcula cuántas entran y ajusta el tamaño sin deformar) ─── */
+.v-lights {
+  width: calc(100% + 30px);
+  height: 62px;
+  margin: -12px -15px 0;
+  background: url("assets/patio/guirnalda.webp") left top / auto 100% repeat-x;   /* el script ajusta tamaño para copias enteras */
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Hero ─── */
+.v-hero { position: relative; text-align: center; padding: 34px 0 4px; }
+.v-hero .hero-name { justify-content: center; }
+.v-patio {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 58px;
+  color: var(--orange);
+  line-height: .8;
+  margin-top: -6px;
+  transform: rotate(-5deg);
+  display: inline-block;
+  text-shadow: 2px 2px 0 rgba(243,198,107,0.55);
+}
+.v-tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.34em;
+  color: var(--blue);
+  margin-top: 10px;
+}
+.v-bondi { display: block; width: min(100%, 620px); height: auto; margin: 10px auto 4px; }
+.v-facts {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--blue); opacity: .7;
+}
+.v-facts span { color: var(--orange); margin: 0 6px; }
+.v-corner { position: absolute; pointer-events: none; height: auto; }
+.v-corner-tr { width: 170px; right: -34px; top: -8px; transform: rotate(8deg); }
+
+/* ─── Barra de secciones (pegajosa) ─── */
+.v-nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+  margin: 16px -40px 0; padding: 10px 40px;
+  background: rgba(245,240,230,0.92);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-top: 1px dashed rgba(15,37,96,0.18);
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.v-nav::-webkit-scrollbar { display: none; }
+/* Centrados; si no entran (celular) se deslizan sin cortar el primero */
+.v-nav a:first-child { margin-left: auto; }
+.v-nav a:last-child { margin-right: auto; }
+.v-nav a {
+  flex: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); text-decoration: none;
+  padding: 6px 13px;
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  background: var(--paper);
+  transition: background .2s, color .2s, transform .2s;
+}
+.v-nav a.active { background: var(--blue); color: var(--cream); transform: rotate(-2deg); }
+.v-nav:empty { display: none; }
+
+/* ─── Secciones ─── */
+.verano .section { scroll-margin-top: 64px; }
+.v-art { margin: 6px auto 2px; text-align: center; }
+.v-art img { width: 150px; height: auto; display: inline-block; }
+.v-art.tilt-l img { transform: rotate(-4deg); }
+.v-art.tilt-r img { transform: rotate(4deg); }
+.v-art.tall img { width: auto; height: 150px; }
+.verano .sec-title, .verano .sec-title.orange {
+  text-align: center;
+  border-bottom: 0;
+  padding-bottom: 14px;
+  background: var(--brush) center bottom / 190px 12px no-repeat;
+}
+.verano .sec-sub { text-align: center; }
+
+/* Separador: rodaja de cítrico */
+.verano .asterisk-row {
+  font-size: 0; height: 28px; opacity: 1; margin: 26px 0 0;
+  background: var(--citrus) center / 26px no-repeat;
+  position: relative;
+}
+.verano .asterisk-row::before, .verano .asterisk-row::after {
+  content: ""; position: absolute; top: 50%; width: calc(50% - 30px);
+  border-top: 1px dashed rgba(15,37,96,0.2);
+}
+.verano .asterisk-row::before { left: 0; }
+.verano .asterisk-row::after { right: 0; }
+
+/* Precios como “pastilla” */
+.verano .pizza-prices, .verano .item-price, .verano .postre-price, .verano .bebida-price {
+  display: inline-block;
+  background: rgba(204,51,0,0.08);
+  border-radius: 999px;
+  padding: 2px 9px 1px;
+}
+.verano .item-price:empty, .verano .pizza-prices:empty, .verano .postre-price:empty { display: none; }
+
+/* ══ SISTEMA ÚNICO DE TARJETA ══
+   Todas las secciones usan el mismo marco: borde azul, sombra teja, derecho (sin inclinar).
+   Lo que cambia por sección es solo el orden interno (grilla de tarjetas, tabla). */
+.verano {
+  --card-border: 1.5px solid var(--blue);
+  --card-shadow: 3px 3px 0 var(--orange);
+  --card-radius: 12px;
+}
+
+/* Grillas de tarjetas (pizzas, sándwiches, valientes, ensaladas, postres) */
+.verano :is(.pizza-grid, .items-list, .postres-row) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  background: transparent;
+  border: 0 !important;
+  padding: 4px 3px 6px 0;
+  margin-top: 8px;
+}
+
+.verano :is(.pizza-item, .list-item, .postre-card) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  margin: 0;
+  padding: 14px 16px 12px;
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  transform: none;
+}
+.verano .pizza-item:hover { background: var(--paper); }
+.verano .item-left { flex: none; display: flex; flex-direction: column; gap: 5px; }
+.verano :is(.pizza-name, .item-name, .postre-name) {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: var(--blue);
+  margin: 0;
+}
+.verano :is(.pizza-desc, .item-desc) { margin: 0; font-size: 12.5px; line-height: 1.45; }
+/* precio siempre al pie de la tarjeta → quedan alineados en cada fila */
+.verano :is(.pizza-prices, .item-price, .postre-price) { margin: auto 0 0; padding-top: 2px; font-size: 14px; }
+.verano .list-item .item-price { margin-top: auto; }
+.verano .pizza-item > .pizza-prices, .verano .list-item > .item-price { align-self: center; }
+
+/* Tablas (empanadas) dentro del mismo marco */
+.verano .emp-table {
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border-collapse: separate; border-spacing: 0;
+  padding: 8px 16px 4px;
+  margin-top: 8px;
+}
+.verano .emp-table tbody tr:last-child td { border-bottom: 0; }
+/* Empanadas: misma escala que los nombres y precios de las tarjetas */
+.verano .emp-table tbody td {
+  font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+  font-size: 18px; letter-spacing: 0.07em;
+  padding: 9px 0;
+}
+.verano .emp-table tbody td.emp-price { font-size: 17px; letter-spacing: 0.04em; }
+.verano .emp-table thead th { font-size: 13px; padding-bottom: 8px; }
+
+/* Valientes: caja teja con rayas de toldo, tarjetas debajo */
+.verano .valientes-header {
+  border-radius: 12px;
+  background: repeating-linear-gradient(-45deg, var(--orange) 0 14px, #BF3000 14px 28px);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.verano .foc-sub-title { text-align: center; border-bottom: 0; margin: 18px 0 2px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 26px; color: var(--orange); text-transform: none; }
+
+/* ─── Bebidas: tabla por tamaño + recuadro de aguas ─── */
+.v-beb {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 10px;
+}
+.v-beb-card {
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 12px 16px 8px;
+}
+.v-beb-title {
+  font-family: 'Caveat', cursive; font-weight: 700;
+  font-size: 24px; line-height: 1;
+  color: var(--orange);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.v-beb-table { width: 100%; border-collapse: collapse; }
+.v-beb-table th {
+  font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+  font-size: 12px; letter-spacing: 0.12em;
+  color: var(--blue); opacity: .6;
+  text-align: right; padding: 0 0 6px 10px;
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.v-beb-table td { padding: 7px 0; border-bottom: 0.5px solid rgba(15,37,96,0.08); }
+.v-beb-table tr:last-child td { border-bottom: 0; }
+.v-beb .v-beb-name {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--blue);
+}
+.v-beb .v-beb-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 0.05em;
+  color: var(--orange);
+  text-align: right; white-space: nowrap; padding-left: 10px;
+}
+.v-beb-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 0.5px solid rgba(15,37,96,0.08);
+}
+.v-beb-row:last-child { border-bottom: 0; }
+
+/* Ilustraciones que aparecen al hacer scroll */
+.verano .reveal { opacity: 0; translate: 0 14px; transition: opacity .6s ease, translate .6s ease; }
+.verano .reveal.in { opacity: 1; translate: 0 0; }
+
+/* Pie con festón */
+.verano .bottom-block { position: relative; margin-top: 46px; border-top: 0; }
+.verano .bottom-block::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 12px;
+  background: radial-gradient(circle at 11px 12px, var(--blue) 10.5px, transparent 11px) 0 0 / 22px 12px repeat-x;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .v-awning { width: calc(100% + 32px); margin: -20px -16px 0; }
+  .v-lights { width: calc(100% + 4px); height: 30px; margin: -7px -2px 0; }
+  .v-nav { margin: 14px -16px 0; padding: 9px 16px; }
+  .v-hero { padding-top: 20px; }
+  .v-patio { font-size: 48px; }
+  .v-tagline { font-size: 11px; letter-spacing: .28em; }
+  .v-corner-tr { width: 120px; right: -30px; }
+  .v-facts { font-size: 9.5px; letter-spacing: .1em; }
+  .v-bondi { width: calc(100% + 16px); max-width: none; margin-left: -8px; margin-right: -8px; }
+  .v-art img { width: 128px; }
+  .v-art.tall img { height: 130px; }
+  .verano .sec-title, .verano .sec-title.orange { background-size: 160px 11px; }
+  .verano .page::before, .verano .page::after { width: 10px; background-size: 10px 30px; }
+}
+@media (max-width: 600px) {
+  .v-beb { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  /* Tarjetas con descripción: una por fila; las cortas (ensaladas, postres) siguen de a dos */
+  .verano .pizza-grid, .verano .items-list:has(.item-desc) { grid-template-columns: 1fr; }
+  .verano :is(.pizza-item, .list-item, .postre-card) { padding: 12px 14px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .verano .reveal { opacity: 1; translate: none; transition: none; }
+}
+@media print {
+  .v-nav, .v-lights { display: none; }
+}
+
+/* Pie: ramitas de fondo (detrás del texto) */
+.verano .bottom-block::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%28-28%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 2% 88% / 120px 120px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%2824%29%20scale%28-1%201%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 13% 8% / 54px 54px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%28-62%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 27% 100% / 70px 70px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%2838%29%20scale%28-1%201%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 41% 4% / 40px 40px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%28-20%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 58% 96% / 48px 48px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%2830%29%20scale%28-1%201%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 71% 10% / 64px 64px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%2852%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 86% 100% / 82px 82px no-repeat,
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2038%2038%22%20fill%3D%22%2322397C%22%3E%3Cg%20transform%3D%22translate%2819%2019%29%20rotate%28160%29%20scale%28-1%201%29%20translate%28-12%20-19%29%22%3E%3Cpath%20d%3D%22M12%2036%20C11%2028%2010%2018%2013%203%22%20stroke%3D%22%2322397C%22%20stroke-width%3D%221.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M12%2031%20C5%2030%201%2023%205%2018%20C8%2023%2010%2028%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2031%20C18%2028%2020%2022%2017%2017%20C14%2022%2013%2027%2012%2031Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C5%2021%202%2014%206%2010%20C9%2015%2011%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M12%2023%20C18%2020%2021%2014%2017%2010%20C14%2015%2013%2020%2012%2023Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C7%2013%205%207%209%204%20C11%208%2012%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%2015%20C18%2012%2019%206%2016%204%20C13%208%2013%2012%2013%2015Z%22/%3E%3Cpath%20d%3D%22M13%205%20C10%202%2011%200%2013%200%20C15%200%2015%202%2013%205Z%22/%3E%3C/g%3E%3C/svg%3E") 99% 6% / 116px 116px no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+.verano .bottom-block > * { position: relative; z-index: 1; }
+@media (max-width: 768px) {
+  .verano .bottom-block::after { background-size: 60px 60px; opacity: .9; }
+}
+
+</style>
+</head>
+<body data-menu="patio" class="verano">
+
+<div class="page">
+<div class="page-inner">
+
+  <!-- ─── TOLDO + LUCES ─── -->
+  <img class="v-awning" src="assets/patio/techito.webp" alt="" aria-hidden="true">
+  <div class="v-lights" aria-hidden="true"></div>
+
+  <!-- ─── HERO PATIO ─── -->
+  <header class="v-hero">
+    <div class="hero-name"><svg class="hero-leaf-svg left" viewBox="0 0 24 38" xmlns="http://www.w3.org/2000/svg" fill="#0F2560" transform-origin="center bottom"><g transform="rotate(-12 12 38)"><path d="M12 36 C11 28 10 18 13 3" stroke="#0F2560" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M12 31 C5 30 1 23 5 18 C8 23 10 28 12 31Z"/><path d="M12 31 C18 28 20 22 17 17 C14 22 13 27 12 31Z"/><path d="M12 23 C5 21 2 14 6 10 C9 15 11 20 12 23Z"/><path d="M12 23 C18 20 21 14 17 10 C14 15 13 20 12 23Z"/><path d="M13 15 C7 13 5 7 9 4 C11 8 12 12 13 15Z"/><path d="M13 15 C18 12 19 6 16 4 C13 8 13 12 13 15Z"/><path d="M13 5 C10 2 11 0 13 0 C15 0 15 2 13 5Z"/></g></svg>Fortunella<svg class="hero-leaf-svg right" viewBox="0 0 24 38" xmlns="http://www.w3.org/2000/svg" fill="#0F2560"><g transform="rotate(12 12 38)"><path d="M12 36 C13 28 14 18 11 3" stroke="#0F2560" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M12 31 C5 28 3 22 7 17 C10 22 11 27 12 31Z"/><path d="M12 31 C19 30 23 23 19 18 C16 23 14 28 12 31Z"/><path d="M12 23 C6 20 3 14 7 10 C10 15 11 20 12 23Z"/><path d="M12 23 C18 21 21 14 18 10 C15 15 13 20 12 23Z"/><path d="M11 15 C6 12 5 6 8 4 C10 8 11 12 11 15Z"/><path d="M11 15 C17 13 19 7 16 4 C14 8 12 12 11 15Z"/><path d="M11 5 C9 2 9 0 11 0 C13 0 13 2 11 5Z"/></g></svg></div>
+    <div class="v-patio">Patio</div>
+    <div class="v-tagline">Un manjar en el patio</div>
+    <img class="v-bondi" src="assets/patio/bondi.webp" alt="Ilustración del patio de Fortunella con el bondi y las luces">
+    <div class="v-facts">Masa madre <span>✦</span> Horno de barro <span>✦</span> Ingredientes frescos</div>
+  </header>
+
+  <!-- ─── NAVEGACIÓN POR SECCIONES (la arma js al cargar el menú) ─── -->
+  <nav class="v-nav" id="v-nav" aria-label="Secciones de la carta"></nav>
+
+  <!-- ─── MENÚ DINÁMICO (generado por js/menu.js desde Supabase, con fallback estático) ─── -->
+  <div id="menu-root">
+    <div class="section"><span class="sec-title">Cargando menú…</span></div>
+  </div>
+
+  <!-- ─── BLOQUE INFERIOR UNIFICADO ─── -->
+  <div class="bottom-block">
+    <div class="also-ask">
+      <div class="also-ask-title">✦ También podés pedir ✦</div>
+      <div class="also-ask-items">Mitad y mitad en pizzas &nbsp;·&nbsp; Ingredientes adicionales &nbsp;·&nbsp; Pizza de molde &nbsp;·&nbsp; Empanadas mixtas</div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-logo">Fortunella</div>
+      <div class="footer-center">
+        <div class="footer-buen">¡buen provecho!</div>
+        <div class="footer-tagline">Gracias por elegirnos</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-info">@fortunella.pizzas</div>
+        <div class="footer-info">La Rioja, Argentina · Est. 2020</div>
+      </div>
+    </footer>
+  </div>
+
+</div><!-- /page-inner -->
+</div><!-- /page -->
+  <script type="module">
+    // Guirnalda: que entren copias ENTERAS de punta a punta, sin deformar el dibujo.
+    // Calcula cuántas entran al tamaño buscado y escala todas por igual (alto y ancho).
+    {
+      const g = document.querySelector(".v-lights");
+      const RATIO = 1100 / 192; // ancho/alto de guirnalda.webp
+      const fit = () => {
+        const w = g.clientWidth;
+        if (!w) return;
+        const target = window.innerWidth <= 768 ? 30 : 52; // alto deseado
+        const n = Math.max(1, Math.round(w / (target * RATIO)));
+        const cw = w / n;
+        g.style.backgroundSize = `${cw}px ${cw / RATIO}px`;
+        g.style.height = `${cw / RATIO}px`;
+      };
+      new ResizeObserver(fit).observe(g);
+      fit();
+    }
+
+    // Decoración "verano": ilustración por sección + barra de navegación.
+    // Se reconoce cada sección por su nombre, así si el dueño la renombra o agrega una nueva, no se rompe nada.
+    const ART = [
+      // [patrón del nombre, ilustración, etiqueta en la barra, clase extra]
+      [/valiente/i, null, null],
+      [/esper|empanad/i, "empanada-dorada", "Empanadas", "tilt-l"],
+      [/sandwich|focac/i, "focaccia", "Sándwiches", "tilt-r"],
+      [/pizza/i, "pizza", "Pizzas", ""],
+      [/ensalad/i, "caesar-bowl", "Ensaladas", "tilt-l"],
+      [/dulce|postre/i, "tiramisu", "Postres", "tilt-l"],
+      [/bebida/i, "aperol", "Bebidas", "tall"],
+    ];
+    const slug = (t) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+    const nf = new Intl.NumberFormat("es-AR");
+    const SIZE = /\s+(\d+(?:[.,]\d+)?\s*(?:ml|cc|l))$/i;
+    const money = (v) => "$" + nf.format(v);
+    const el = (tag, cls, text) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    };
+
+    function buildBebidas(items) {
+      const wrap = el("div", "v-beb");
+      const groups = new Map();
+      for (const it of items) {
+        const key = it.subgroup || "";
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(it);
+      }
+      for (const [subgroup, list] of groups) {
+        const sized = [], plain = [];
+        for (const it of list) {
+          const m = it.name.match(SIZE);
+          const price = it.prices?.[0]?.value;
+          if (m) sized.push({ base: it.name.replace(SIZE, "").trim(), size: m[1].replace(/\s+/g, ""), price });
+          else plain.push({ name: it.name, price });
+        }
+        if (sized.length) {
+          const sizes = [...new Set(sized.map((s) => s.size))];
+          const bases = [...new Set(sized.map((s) => s.base))];
+          const card = el("div", "v-beb-card");
+          card.appendChild(el("p", "v-beb-title", subgroup ? `${subgroup}` : "Bebidas"));
+          const t = el("table", "v-beb-table");
+          const hr = el("tr");
+          hr.appendChild(el("th"));
+          sizes.forEach((s) => hr.appendChild(el("th", null, s.replace(/(\d)(ml|cc|l)$/i, "$1 $2").toUpperCase())));
+          t.appendChild(el("thead")).appendChild(hr);
+          const tb = t.appendChild(el("tbody"));
+          for (const b of bases) {
+            const tr = el("tr");
+            tr.appendChild(el("td", "v-beb-name", b));
+            for (const s of sizes) {
+              const hit = sized.find((x) => x.base === b && x.size === s);
+              tr.appendChild(el("td", "v-beb-price", hit && hit.price != null ? money(hit.price) : "—"));
+            }
+            tb.appendChild(tr);
+          }
+          card.appendChild(t);
+          wrap.appendChild(card);
+        }
+        if (plain.length) {
+          const card = el("div", "v-beb-card v-beb-side");
+          card.appendChild(el("p", "v-beb-title", sized.length ? "Aguas y más" : subgroup || "Bebidas"));
+          for (const p of plain) {
+            const row = el("div", "v-beb-row");
+            row.append(el("span", "v-beb-name", p.name), el("span", "v-beb-price", p.price != null ? money(p.price) : ""));
+            card.appendChild(row);
+          }
+          wrap.appendChild(card);
+        }
+      }
+      return wrap;
+    }
+
+    document.addEventListener("menu:rendered", ({ detail }) => {
+      const sections = [...document.querySelectorAll("#menu-root > .section")];
+      const nav = document.getElementById("v-nav");
+      nav.textContent = "";
+      const watch = [];
+
+      sections.forEach((sec, i) => {
+        const mod = detail.modules[i];
+        if (!mod) return;
+        const rule = ART.find(([re]) => re.test(mod.name));
+        if (rule && rule[1] === null) return; // "Solo para Valientes" va pegado a Sandwichería
+        sec.id = "s-" + slug(mod.name);
+
+        // Bebidas: tabla bebida × tamaño (500ml, 1,5L…) + recuadro con las que no tienen tamaño
+        const bebidas = sec.querySelector(".bebidas-grid");
+        if (bebidas) bebidas.replaceWith(buildBebidas(mod.items));
+
+        if (rule) {
+          const fig = document.createElement("figure");
+          fig.className = "v-art reveal " + (rule[3] || "");
+          fig.setAttribute("aria-hidden", "true");
+          const img = document.createElement("img");
+          img.src = `assets/patio/${rule[1]}.webp`;
+          img.alt = "";
+          img.loading = "lazy";
+          fig.appendChild(img);
+          sec.prepend(fig);
+          watch.push(fig);
+        }
+
+        const a = document.createElement("a");
+        a.href = "#" + sec.id;
+        a.textContent = rule ? rule[2] : mod.name;
+        nav.appendChild(a);
+      });
+
+      // Aparición suave de las ilustraciones
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target)));
+      }, { rootMargin: "0px 0px -10% 0px" });
+      watch.forEach((el) => io.observe(el));
+
+      // Marca en la barra la sección visible
+      const links = [...nav.querySelectorAll("a")];
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((l) => {
+            const on = l.hash === "#" + e.target.id;
+            l.classList.toggle("active", on);
+            if (on) nav.scrollTo({ left: l.offsetLeft - (nav.clientWidth - l.offsetWidth) / 2, behavior: "smooth" });
+          });
+        });
+      }, { rootMargin: "-30% 0px -60% 0px" });
+      links.forEach((l) => spy.observe(document.querySelector(l.hash)));
+    });
+
+  </script>
+  <script type="module" src="js/menu.js"></script>
+</body>
+</html>

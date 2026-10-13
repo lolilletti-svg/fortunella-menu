@@ -1,0 +1,338 @@
+
+/* ══════════════════════════════════════════════════════════
+   CAPA "VERANO" — Patio Fortunella
+   Misma paleta (azul #0F2560 · teja #CC3300 · cremas) + acuarelas.
+   Se apoya en el CSS base de arriba y solo pisa lo necesario.
+══════════════════════════════════════════════════════════ */
+.verano {
+  --paper: #FBF7EE;
+  --sun:   #F3C66B;
+  --wash-orange: rgba(236,129,33,0.10);
+  --wash-blue:   rgba(15,37,96,0.06);
+  --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M3 7 C40 2 78 10 118 5 S168 9 197 4' fill='none' stroke='%23CC3300' stroke-width='3.6' stroke-linecap='round' opacity='.85'/%3E%3Cpath d='M30 9 C70 6 120 11 170 7' fill='none' stroke='%23CC3300' stroke-width='1.2' stroke-linecap='round' opacity='.35'/%3E%3C/svg%3E");
+  --citrus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='12' fill='%23CC3300'/%3E%3Ccircle cx='14' cy='14' r='10' fill='%23FBF7EE'/%3E%3Cg stroke='%23CC3300' stroke-width='1.3' stroke-linecap='round' opacity='.75'%3E%3Cpath d='M14 5v18M5 14h18M7.6 7.6l12.8 12.8M20.4 7.6 7.6 20.4'/%3E%3C/g%3E%3Ccircle cx='14' cy='14' r='1.6' fill='%23CC3300'/%3E%3C/svg%3E");
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 60'%3E%3Cpath d='M16 0 Q-4 15 16 30 Q-4 45 16 60' fill='none' stroke='%230F2560' stroke-width='1.5' stroke-opacity='.45'/%3E%3C/svg%3E");
+}
+
+/* Fondo: papel con lavados de acuarela muy suaves */
+body.verano {
+  background:
+    radial-gradient(ellipse 70% 45% at 100% 0%, var(--wash-orange), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 0% 55%, var(--wash-blue), transparent 70%),
+    var(--cream2);
+}
+.verano .page {
+  overflow: clip;               /* permite la barra pegajosa (sticky) */
+  background:
+    radial-gradient(ellipse 80% 30% at 85% 2%, var(--wash-orange), transparent 70%),
+    radial-gradient(ellipse 70% 25% at 10% 48%, var(--wash-blue), transparent 70%),
+    radial-gradient(ellipse 70% 25% at 95% 80%, var(--wash-orange), transparent 70%),
+    var(--cream);
+}
+/* Bordes ondulados laterales (reemplazan el marco punteado) */
+.verano .page::before, .verano .page::after {
+  content: "";
+  display: block;
+  position: absolute; top: 0; bottom: 0; width: 14px;
+  inset: 0 auto 0 4px;
+  border: 0; opacity: 1;
+  background: var(--wave) left top / 14px 38px repeat-y;
+  pointer-events: none;
+  z-index: 0;
+}
+.verano .page::after { inset: 0 4px 0 auto; transform: scaleX(-1); }
+
+/* ─── Toldo de acuarela: de borde a borde de la hoja, proporción natural (recortado sin las puntas en diagonal) ─── */
+.v-awning {
+  display: block;
+  width: calc(100% + 80px);
+  max-width: none;
+  height: auto;
+  margin: -32px -40px 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Guirnalda: copias en tamaño natural repetidas de punta a punta del toldo
+   (siempre copias enteras: el script calcula cuántas entran y ajusta el tamaño sin deformar) ─── */
+.v-lights {
+  width: calc(100% + 30px);
+  height: 62px;
+  margin: -12px -15px 0;
+  background: url("assets/patio/guirnalda.webp") left top / auto 100% repeat-x;   /* el script ajusta tamaño para copias enteras */
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Hero ─── */
+.v-hero { position: relative; text-align: center; padding: 34px 0 4px; }
+.v-hero .hero-name { justify-content: center; }
+.v-patio {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 58px;
+  color: var(--orange);
+  line-height: .8;
+  margin-top: -6px;
+  transform: rotate(-5deg);
+  display: inline-block;
+  text-shadow: 2px 2px 0 rgba(243,198,107,0.55);
+}
+.v-tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.34em;
+  color: var(--blue);
+  margin-top: 10px;
+}
+.v-bondi { display: block; width: min(100%, 620px); height: auto; margin: 10px auto 4px; }
+.v-facts {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--blue); opacity: .7;
+}
+.v-facts span { color: var(--orange); margin: 0 6px; }
+.v-corner { position: absolute; pointer-events: none; height: auto; }
+.v-corner-tr { width: 170px; right: -34px; top: -8px; transform: rotate(8deg); }
+
+/* ─── Barra de secciones (pegajosa) ─── */
+.v-nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+  margin: 16px -40px 0; padding: 10px 40px;
+  background: rgba(245,240,230,0.92);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-top: 1px dashed rgba(15,37,96,0.18);
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.v-nav::-webkit-scrollbar { display: none; }
+/* Centrados; si no entran (celular) se deslizan sin cortar el primero */
+.v-nav a:first-child { margin-left: auto; }
+.v-nav a:last-child { margin-right: auto; }
+.v-nav a {
+  flex: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); text-decoration: none;
+  padding: 6px 13px;
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  background: var(--paper);
+  transition: background .2s, color .2s, transform .2s;
+}
+.v-nav a.active { background: var(--blue); color: var(--cream); transform: rotate(-2deg); }
+.v-nav:empty { display: none; }
+
+/* ─── Secciones ─── */
+.verano .section { scroll-margin-top: 64px; }
+.v-art { margin: 6px auto 2px; text-align: center; }
+.v-art img { width: 150px; height: auto; display: inline-block; }
+.v-art.tilt-l img { transform: rotate(-4deg); }
+.v-art.tilt-r img { transform: rotate(4deg); }
+.v-art.tall img { width: auto; height: 150px; }
+.verano .sec-title, .verano .sec-title.orange {
+  text-align: center;
+  border-bottom: 0;
+  padding-bottom: 14px;
+  background: var(--brush) center bottom / 190px 12px no-repeat;
+}
+.verano .sec-sub { text-align: center; }
+
+/* Separador: rodaja de cítrico */
+.verano .asterisk-row {
+  font-size: 0; height: 28px; opacity: 1; margin: 26px 0 0;
+  background: var(--citrus) center / 26px no-repeat;
+  position: relative;
+}
+.verano .asterisk-row::before, .verano .asterisk-row::after {
+  content: ""; position: absolute; top: 50%; width: calc(50% - 30px);
+  border-top: 1px dashed rgba(15,37,96,0.2);
+}
+.verano .asterisk-row::before { left: 0; }
+.verano .asterisk-row::after { right: 0; }
+
+/* Precios como “pastilla” */
+.verano .pizza-prices, .verano .item-price, .verano .postre-price, .verano .bebida-price {
+  display: inline-block;
+  background: rgba(204,51,0,0.08);
+  border-radius: 999px;
+  padding: 2px 9px 1px;
+}
+.verano .item-price:empty, .verano .pizza-prices:empty, .verano .postre-price:empty { display: none; }
+
+/* ══ SISTEMA ÚNICO DE TARJETA ══
+   Todas las secciones usan el mismo marco: borde azul, sombra teja, derecho (sin inclinar).
+   Lo que cambia por sección es solo el orden interno (grilla de tarjetas, tabla). */
+.verano {
+  --card-border: 1.5px solid var(--blue);
+  --card-shadow: 3px 3px 0 var(--orange);
+  --card-radius: 12px;
+}
+
+/* Grillas de tarjetas (pizzas, sándwiches, valientes, ensaladas, postres) */
+.verano :is(.pizza-grid, .items-list, .postres-row) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  background: transparent;
+  border: 0 !important;
+  padding: 4px 3px 6px 0;
+  margin-top: 8px;
+}
+
+.verano :is(.pizza-item, .list-item, .postre-card) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  margin: 0;
+  padding: 14px 16px 12px;
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  transform: none;
+}
+.verano .pizza-item:hover { background: var(--paper); }
+.verano .item-left { flex: none; display: flex; flex-direction: column; gap: 5px; }
+.verano :is(.pizza-name, .item-name, .postre-name) {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: var(--blue);
+  margin: 0;
+}
+.verano :is(.pizza-desc, .item-desc) { margin: 0; font-size: 12.5px; line-height: 1.45; }
+/* precio siempre al pie de la tarjeta → quedan alineados en cada fila */
+.verano :is(.pizza-prices, .item-price, .postre-price) { margin: auto 0 0; padding-top: 2px; font-size: 14px; }
+.verano .list-item .item-price { margin-top: auto; }
+.verano .pizza-item > .pizza-prices, .verano .list-item > .item-price { align-self: center; }
+
+/* Tablas (empanadas) dentro del mismo marco */
+.verano .emp-table {
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border-collapse: separate; border-spacing: 0;
+  padding: 8px 16px 4px;
+  margin-top: 8px;
+}
+.verano .emp-table tbody tr:last-child td { border-bottom: 0; }
+/* Empanadas: misma escala que los nombres y precios de las tarjetas */
+.verano .emp-table tbody td {
+  font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+  font-size: 18px; letter-spacing: 0.07em;
+  padding: 9px 0;
+}
+.verano .emp-table tbody td.emp-price { font-size: 17px; letter-spacing: 0.04em; }
+.verano .emp-table thead th { font-size: 13px; padding-bottom: 8px; }
+
+/* Valientes: caja teja con rayas de toldo, tarjetas debajo */
+.verano .valientes-header {
+  border-radius: 12px;
+  background: repeating-linear-gradient(-45deg, var(--orange) 0 14px, #BF3000 14px 28px);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.verano .foc-sub-title { text-align: center; border-bottom: 0; margin: 18px 0 2px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 26px; color: var(--orange); text-transform: none; }
+
+/* ─── Bebidas: tabla por tamaño + recuadro de aguas ─── */
+.v-beb {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 10px;
+}
+.v-beb-card {
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 12px 16px 8px;
+}
+.v-beb-title {
+  font-family: 'Caveat', cursive; font-weight: 700;
+  font-size: 24px; line-height: 1;
+  color: var(--orange);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.v-beb-table { width: 100%; border-collapse: collapse; }
+.v-beb-table th {
+  font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+  font-size: 12px; letter-spacing: 0.12em;
+  color: var(--blue); opacity: .6;
+  text-align: right; padding: 0 0 6px 10px;
+  border-bottom: 1px dashed rgba(15,37,96,0.18);
+}
+.v-beb-table td { padding: 7px 0; border-bottom: 0.5px solid rgba(15,37,96,0.08); }
+.v-beb-table tr:last-child td { border-bottom: 0; }
+.v-beb .v-beb-name {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--blue);
+}
+.v-beb .v-beb-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 0.05em;
+  color: var(--orange);
+  text-align: right; white-space: nowrap; padding-left: 10px;
+}
+.v-beb-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 0.5px solid rgba(15,37,96,0.08);
+}
+.v-beb-row:last-child { border-bottom: 0; }
+
+/* Ilustraciones que aparecen al hacer scroll */
+.verano .reveal { opacity: 0; translate: 0 14px; transition: opacity .6s ease, translate .6s ease; }
+.verano .reveal.in { opacity: 1; translate: 0 0; }
+
+/* Pie con festón */
+.verano .bottom-block { position: relative; margin-top: 46px; border-top: 0; }
+.verano .bottom-block::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 12px;
+  background: radial-gradient(circle at 11px 12px, var(--blue) 10.5px, transparent 11px) 0 0 / 22px 12px repeat-x;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .v-awning { width: calc(100% + 32px); margin: -20px -16px 0; }
+  .v-lights { width: calc(100% + 4px); height: 30px; margin: -7px -2px 0; }
+  .v-nav { margin: 14px -16px 0; padding: 9px 16px; }
+  .v-hero { padding-top: 20px; }
+  .v-patio { font-size: 48px; }
+  .v-tagline { font-size: 11px; letter-spacing: .28em; }
+  .v-corner-tr { width: 120px; right: -30px; }
+  .v-facts { font-size: 9.5px; letter-spacing: .1em; }
+  .v-bondi { width: calc(100% + 16px); max-width: none; margin-left: -8px; margin-right: -8px; }
+  .v-art img { width: 128px; }
+  .v-art.tall img { height: 130px; }
+  .verano .sec-title, .verano .sec-title.orange { background-size: 160px 11px; }
+  .verano .page::before, .verano .page::after { width: 10px; background-size: 10px 30px; }
+}
+@media (max-width: 600px) {
+  .v-beb { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  /* Tarjetas con descripción: una por fila; las cortas (ensaladas, postres) siguen de a dos */
+  .verano .pizza-grid, .verano .items-list:has(.item-desc) { grid-template-columns: 1fr; }
+  .verano :is(.pizza-item, .list-item, .postre-card) { padding: 12px 14px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .verano .reveal { opacity: 1; translate: none; transition: none; }
+}
+@media print {
+  .v-nav, .v-lights { display: none; }
+}
