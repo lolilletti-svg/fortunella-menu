@@ -1,5 +1,43 @@
 # Bitácora — Fortunella Menú Digital
 
+## 2026-10-12 — Carta "Patio Fortunella" (inauguración) con diseño de verano
+
+### Lo que se hizo
+**1. Segunda carta en la misma base** (commit `8ef78ee`)
+- Supabase: columna `modules.menu` (`fortunella` | `patio`) + 7 secciones Patio copiadas con los precios vigentes (migración `tools/patio-migration.sql`, aplicada vía conector MCP de Supabase).
+- Secciones: Mientras esperás (empanadas) · Sandwichería · Solo para Valientes · Nuestras deliciosas pizzas (sin Box) · Ensaladas de verano · Dulce Fortunella · Bebidas (solo sin alcohol).
+- `js/menu.js` filtra por `<body data-menu>`; panel con selector "Carta que estás editando".
+- `data/menu-fallback.json` refrescado con los precios en vivo (el dueño había subido pizzas).
+
+**2. Diseño de verano en acuarela** (`patio-verano.html` → hoy `fortunella-pizzas.github.io`)
+- Toldo y guirnalda en acuarela (kit de ChatGPT), bondi del patio, "Patio" manuscrito, bajada "Un manjar en el patio".
+- Ilustración por sección (empanada dorada, focaccia, pizza, bowl César, tiramisú, Aperol).
+- Barra de secciones fija; tarjeta única (borde azul + sombra teja, sin inclinar) en todas las secciones; empanadas y bebidas en tabla dentro del mismo marco; bebidas como tabla bebida × tamaño + "Aguas y más".
+- Pie azul con ramitas del logo en azul más claro de fondo.
+- Generador: `tools/patio-verano/` (base-patio.html + verano.css + verano.js + make_verano.py).
+
+**3. Dirección propia sin "lolilletti-svg"**
+- Organización GitHub `fortunella-pizzas` (creada por Lucía) → repo `fortunella-pizzas.github.io` → https://fortunella-pizzas.github.io/
+- `tools/patio-verano/publicar.sh` publica la carta en ese repo.
+- `patio.html` y `patio-verano.html` del repo principal redirigen ahí (QR viejos de Patio siguen andando).
+- QR definitivo `patio-verano-qr.png` (ECC H), verificado con lector a 1080/270/108 px.
+- Menú principal (`index.html`, `fortunella-qr.png`) sin cambios.
+
+### Estado actual
+✅ Carta Patio en vivo en https://fortunella-pizzas.github.io/ con datos de Supabase. Panel probado por Lucía con la contraseña: edita la carta Patio. Mensaje para el cliente (el Turco) armado.
+
+### Notas técnicas
+- Al reemplazar una imagen, usar **nombre de archivo nuevo**: el navegador cacheaba la vieja.
+- Guirnalda: se repite en copias enteras; un script calcula cuántas entran (ResizeObserver) y escala sin deformar.
+- Toldo: recortado a la franja de lados rectos (el dibujo en perspectiva dejaba huecos en las esquinas).
+- `fortunella-qr.png` se lee con el detector solo agregando borde blanco: al imprimir QR, dejar margen.
+- Herramientas Python en `venv/` (ahora en .gitignore) + `requirements.txt`.
+
+### Próximos pasos
+- Cargar precios de ensaladas Criolla, Mixta y Rúcula y Parmesano (desde el panel).
+- Confirmar si se vende Aperol (hoy ilustra Bebidas, pero solo hay bebidas sin alcohol).
+- Opcional: mudar también el menú principal a `fortunella-pizzas` (con redirecciones).
+
 ## 2026-06-08 / 09 — Menú dinámico editable + entregables
 
 ### Lo que se hizo

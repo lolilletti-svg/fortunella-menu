@@ -1,13 +1,14 @@
 # 🍕 Fortunella — Menú Digital Editable
 
-Menú digital de la pizzería Fortunella (La Rioja, Argentina), accesible por **QR**. El dueño edita precios, ítems y secciones desde un **panel web** y los cambios aparecen **solos** en el menú, sin intervención técnica.
+Menú digital de la pizzería Fortunella (La Rioja, Argentina), accesible por **QR**. Tiene **dos cartas**: el menú de siempre y la carta **Patio Fortunella** (inauguración del patio, diseño de verano en acuarela). El dueño edita precios, ítems y secciones desde un **panel web** y los cambios aparecen **solos** en el menú, sin intervención técnica.
 
 ## 🔗 Enlaces
 
 | | URL |
 |---|---|
-| 🍕 **Menú (el del QR)** | https://lolilletti-svg.github.io/fortunella-menu/ |
-| 🔧 **Panel del dueño** | https://lolilletti-svg.github.io/fortunella-menu/admin.html |
+| 🍕 **Menú principal (QR `fortunella-qr.png`)** | https://lolilletti-svg.github.io/fortunella-menu/ |
+| 🌙 **Carta Patio (QR `patio-verano-qr.png`)** | https://fortunella-pizzas.github.io/ |
+| 🔧 **Panel del dueño (edita las dos cartas)** | https://lolilletti-svg.github.io/fortunella-menu/admin.html |
 | 📄 **Guía del dueño (PDF)** | https://lolilletti-svg.github.io/fortunella-menu/GUIA-DUENO.pdf |
 | 🎬 **Video explainer** | https://lolilletti-svg.github.io/fortunella-menu/GUIA-VIDEO.mp4 |
 
@@ -28,6 +29,8 @@ Los **datos** (módulos e ítems) viven en **Supabase**; el **diseño** es está
 └──────────────────┘
 ```
 
+- **Dos cartas, una base**: la columna `modules.menu` (`fortunella` | `patio`) indica a qué carta pertenece cada sección. Cada página elige la suya con `<body data-menu="...">`; el panel tiene un selector "Carta que estás editando".
+- **Carta Patio** se publica en un repo aparte de la organización GitHub `fortunella-pizzas` (`fortunella-pizzas.github.io`) para que la dirección no muestre `lolilletti-svg`. `patio.html` y `patio-verano.html` de este repo solo redirigen ahí (los QR viejos siguen andando).
 - **Si Supabase no responde**, el menú muestra `data/menu-fallback.json` (snapshot) en vez de quedar vacío.
 - **Seguridad**: la `anon key` es pública por diseño; la escritura está protegida por **Row Level Security** (solo usuarios autenticados) y el panel pide contraseña. Verificado: sin login no se puede escribir.
 
@@ -51,6 +54,12 @@ tools/                  Utilidades offline (NO se sirven al público)
   test-render.mjs       Test headless (render fiel al original)
   guia-dueno.html       Fuente del PDF de la guía
   slides.html           Fuente (6 placas) del video explainer
+patio.html, patio-verano.html   Redirecciones a https://fortunella-pizzas.github.io/
+assets/patio/           Acuarelas de la carta Patio (WebP livianos)
+data/patio-fallback.json Respaldo de la carta Patio
+tools/patio-verano/     Carta Patio: base-patio.html + verano.css + verano.js,
+                        make_verano.py (genera la página) y publicar.sh (la publica)
+tools/patio-migration.sql  Migración que creó la carta Patio (columna menu + datos)
 GUIA-DUENO.md / .pdf    Guía para el dueño
 GUIA-VIDEO.mp4          Video explainer vertical (~20s)
 docs/BITACORA.md        Historial de trabajo
@@ -71,8 +80,12 @@ docs/BITACORA.md        Historial de trabajo
 
 **Regenerar el video** (requiere ffmpeg + Chrome): capturar las 6 placas de `tools/slides.html#1..#6` con Chrome `--screenshot` a `tools/frames/`, y unirlas con ffmpeg usando `xfade` (ver `docs/BITACORA.md`).
 
+**Cambiar el diseño de la carta Patio** → editar `tools/patio-verano/verano.css` / `verano.js`, previsualizar con `python3 tools/patio-verano/make_verano.py .` (genera `_preview-patio.html`, abrir con `python3 -m http.server`) y publicar con `bash tools/patio-verano/publicar.sh`.
+
 **Verificar el render** (sin Supabase): `cd tools && npm install && node test-render.mjs`.
 
 ## 🚀 Deploy
 
 GitHub Pages sirve `main` automáticamente. Hacer cambios → commit → `git push origin main` → se publica solo (~1 min). La URL del QR nunca cambia.
+
+La carta Patio se publica aparte con `tools/patio-verano/publicar.sh` (repo `fortunella-pizzas/fortunella-pizzas.github.io`).
