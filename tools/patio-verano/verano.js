@@ -93,6 +93,101 @@
       return wrap;
     }
 
+
+    // ── Pizzas en subsecciones con mini banners ──────────────────────────
+    // Si el ítem tiene "Subgrupo" cargado en el panel, se usa ese. Si no, este reparto propuesto.
+    const PIZZA_GROUPS = [
+      { title: "Clásicas", tagline: "Las de siempre", img: "pz-clasicas",
+        names: ["Muzzarella", "Doble Muzzarella", "Margarita", "Fugazza", "Fugazza con Jamón", "Napolitana",
+                "Napolitana con Jamón", "Capresse", "Calabresa", "Jamón y Morrón", "Especial", "4 Quesos",
+                "Roquefort y Nuez", "Anchoas", "Cantimpalo", "Provolone", "Provolone con Jamón", "Ananás y Jamón",
+                "Champiñones", "Palmitos", "Picante", "Porteña", "Jamón Crudo y Rúcula", "Panceta Ahumada"] },
+      { title: "Clásicas reversionadas", tagline: "Con una vuelta de tuerca", img: "pz-reversionadas",
+        names: ["Roquefort con Peras y Nuez", "Brócoli y Jamón", "Brócoli y Panceta", "Choclo Asado",
+                "Choclo Asado y Queso Cremoso", "Ananás y Cerezas", "Veggie", "Popeye", "A Puro Huevo", "Un Viaje de Papas"] },
+      { title: "Especiales", tagline: "Las joyas de la casa", img: "pz-especiales",
+        names: ["Burrata y Mortadela", "Burrata y Jamón Crudo", "Carne", "Cherry Bocconcinos", "Chayera"] },
+    ];
+    const norm = (t) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+    // Deja solo lo distintivo: la base (salsa, muzzarella, tomates asados y aceitunas) ya la dice el subtítulo.
+    function shortDesc(d) {
+      if (!d) return "";
+      let s = d.trim()
+        .replace(/^salsa,\s*/i, "")
+        .replace(/^muzz?arr?ella,\s*/i, "")
+        .replace(/,?\s*tomates asados y aceitunas$/i, "")
+        .replace(/,?\s*tomates asados y (aceitunas (?:negras|verdes))$/i, " · $1");
+      s = s.replace(/^\s*·\s*/, "").trim();
+      return s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
+    }
+
+    function buildPizzas(sec, items) {
+      const list = items.filter((i) => !i.featured);
+      const groups = [];
+      const byTitle = new Map();
+      const ensure = (meta) => {
+        if (!byTitle.has(meta.title)) { const g = { ...meta, items: [] }; byTitle.set(meta.title, g); groups.push(g); }
+        return byTitle.get(meta.title);
+      };
+      PIZZA_GROUPS.forEach(ensure);
+      for (const it of list) {
+        let meta = null;
+        if (it.subgroup) meta = PIZZA_GROUPS.find((g) => norm(g.title) === norm(it.subgroup)) || { title: it.subgroup, tagline: "", img: "pz-clasicas" };
+        else meta = PIZZA_GROUPS.find((g) => g.names.some((n) => norm(n) === norm(it.name))) || PIZZA_GROUPS[0];
+        ensure(meta).items.push(it);
+      }
+      const used = groups.filter((g) => g.items.length);
+
+      const tabs = el("div", "v-pz-tabs");
+      tabs.setAttribute("role", "tablist");
+      const panels = [];
+      used.forEach((g, gi) => {
+        const b = el("button", "v-pz-tab");
+        b.type = "button";
+        b.setAttribute("role", "tab");
+        const img = el("img"); img.src = `assets/patio/${g.img}.webp`; img.alt = ""; img.loading = "lazy";
+        b.append(img, el("span", "v-pz-tab-title", g.title));
+        if (g.tagline) b.appendChild(el("span", "v-pz-tab-tag", g.tagline));
+        b.appendChild(el("span", "v-pz-tab-count", `${g.items.length} pizzas`));
+        tabs.appendChild(b);
+
+        const grid = el("div", "v-pz-grid");
+        grid.setAttribute("role", "tabpanel");
+        for (const it of g.items) {
+          const card = el("div", "pizza-item v-pz-card");
+          const nm = el("p", "pizza-name", it.name);
+          if (it.note) nm.appendChild(el("span", "v-pz-note", " " + it.note));
+          card.appendChild(nm);
+          const d = shortDesc(it.description);
+          if (d && norm(d) !== norm(it.name)) card.appendChild(el("p", "pizza-desc", d)); // no repetir "Calabresa / Calabresa"
+          const pr = el("div", "v-pz-prices");
+          for (const p of it.prices || []) {
+            const row = el("span");
+            if (p.label) row.appendChild(el("small", null, p.label.charAt(0) + p.label.slice(1).toLowerCase()));
+            row.appendChild(document.createTextNode(money(p.value)));
+            pr.appendChild(row);
+          }
+          card.appendChild(pr);
+          grid.appendChild(card);
+        }
+        panels.push(grid);
+        b.addEventListener("click", () => select(gi, true));
+      });
+
+      function select(i, scroll) {
+        [...tabs.children].forEach((t, k) => { t.classList.toggle("active", k === i); t.setAttribute("aria-selected", k === i); });
+        panels.forEach((p, k) => (p.hidden = k !== i));
+        if (scroll && tabs.getBoundingClientRect().top < 70) tabs.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      const old = sec.querySelector(".pizza-grid");
+      old.replaceWith(tabs);
+      // orden: tabs, panel 0, panel 1...
+      let ref = tabs; panels.forEach((p) => { ref.after(p); ref = p; });
+      select(0, false);
+    }
+
     document.addEventListener("menu:rendered", ({ detail }) => {
       const sections = [...document.querySelectorAll("#menu-root > .section")];
       const nav = document.getElementById("v-nav");
@@ -105,6 +200,8 @@
         const rule = ART.find(([re]) => re.test(mod.name));
         if (rule && rule[1] === null) return; // "Solo para Valientes" va pegado a Sandwichería
         sec.id = "s-" + slug(mod.name);
+
+        if (mod.layout_type === "pizza-grid" && sec.querySelector(".pizza-grid")) buildPizzas(sec, mod.items);
 
         // Bebidas: tabla bebida × tamaño (500ml, 1,5L…) + recuadro con las que no tienen tamaño
         const bebidas = sec.querySelector(".bebidas-grid");

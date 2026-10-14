@@ -245,6 +245,56 @@ body.verano {
 }
 .verano .foc-sub-title { text-align: center; border-bottom: 0; margin: 18px 0 2px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 26px; color: var(--orange); text-transform: none; }
 
+/* ─── Pizzas: mini banners (pestañas) + grilla compacta ─── */
+.v-pz-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 10px 3px 16px 0;
+  scroll-margin-top: 70px;
+}
+.v-pz-tab {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 10px 8px 9px;
+  background: var(--paper);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  color: var(--blue);
+  font: inherit;
+  transition: background .2s, transform .15s, box-shadow .15s;
+}
+.v-pz-tab img { width: 72px; height: 58px; object-fit: contain; }
+.v-pz-tab-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: .07em; line-height: 1.05; text-align: center; }
+.v-pz-tab-tag { font-family: 'Caveat', cursive; font-weight: 700; font-size: 16px; color: var(--orange); line-height: 1; text-align: center; }
+.v-pz-tab-count { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .6; }
+.v-pz-tab.active { background: var(--blue); color: var(--cream); transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--orange); }
+.v-pz-tab.active .v-pz-tab-tag { color: var(--sun); }
+.v-pz-tab:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+.v-pz-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 3px 6px 0;
+}
+.v-pz-grid[hidden] { display: none; }
+.verano .v-pz-card { padding: 11px 10px 10px; gap: 4px; }
+.verano .v-pz-card .pizza-name { font-size: 17px; }
+.verano .v-pz-card .pizza-desc { font-size: 12px; line-height: 1.35; }
+.v-pz-note { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: .04em; opacity: .7; }
+.v-pz-prices {
+  margin-top: auto; padding-top: 4px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 6px;
+}
+.v-pz-prices span {
+  font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: .04em;
+  color: var(--orange); background: rgba(204,51,0,0.08);
+  border-radius: 999px; padding: 2px 8px 1px; white-space: nowrap;
+}
+.v-pz-prices small { color: var(--blue); opacity: .65; margin-right: 4px; font-size: 12px; }
+
 /* ─── Bebidas: tabla por tamaño + recuadro de aguas ─── */
 .v-beb {
   display: grid;
@@ -323,6 +373,16 @@ body.verano {
   .verano .page::before, .verano .page::after { width: 10px; background-size: 10px 30px; }
 }
 @media (max-width: 600px) {
+  .v-pz-tabs { gap: 8px; }
+  .v-pz-tab { padding: 8px 4px 7px; }
+  .v-pz-tab img { width: 54px; height: 44px; }
+  .v-pz-tab-title { font-size: 15px; }
+  .v-pz-tab-tag { font-size: 13.5px; }
+  .v-pz-tab-count { font-size: 10px; }
+  .v-pz-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .verano .v-pz-card .pizza-name { font-size: 15.5px; }
+  .verano .v-pz-card .pizza-desc { font-size: 11.5px; }
+  .v-pz-prices span { font-size: 13px; padding: 2px 6px 1px; }
   .v-beb { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
