@@ -26,6 +26,8 @@
       [/pizza/i, "pizza", "Pizzas", ""],
       [/ensalad/i, "caesar-bowl", "Ensaladas", "tilt-l"],
       [/dulce|postre/i, "tiramisu", "Postres", "tilt-l"],
+      [/sin alcohol/i, "cola", "Sin alcohol", "tall"],
+      [/con alcohol/i, "aperol", "Con alcohol", "tall"],
       [/bebida/i, "aperol", "Bebidas", "tall"],
     ];
     const slug = (t) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
