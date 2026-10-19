@@ -92,6 +92,8 @@
           wrap.appendChild(card);
         }
       }
+      // Con una sola tabla, el título naranja repite el de la sección → se omite
+      if (wrap.children.length === 1) wrap.querySelector(".v-beb-title")?.remove();
       return wrap;
     }
 
