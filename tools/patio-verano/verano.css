@@ -295,6 +295,30 @@ body.verano {
 }
 .v-pz-prices small { color: var(--blue); opacity: .65; margin-right: 4px; font-size: 12px; }
 
+/* ─── Banner de foto: mismo marco que las tarjetas ─── */
+.v-photo {
+  position: relative;
+  grid-column: 1 / -1;          /* ocupa todo el ancho de la grilla de pizzas */
+  margin: 4px 0;
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  aspect-ratio: 5 / 1;          /* banner finito */
+  background: var(--cream2);
+}
+.v-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.v-photo figcaption {
+  position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%);
+  font-family: 'Caveat', cursive; font-weight: 700; font-size: 19px; line-height: 1;
+  color: var(--blue);
+  background: rgba(251,247,238,0.94);
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  padding: 5px 16px 6px;
+  white-space: nowrap;
+}
+
 /* ─── Bebidas: tabla por tamaño + recuadro de aguas ─── */
 .v-beb {
   display: grid;
@@ -303,6 +327,8 @@ body.verano {
   align-items: start;
   margin-top: 10px;
 }
+/* Si la sección tiene una sola tabla (ej. solo gaseosas o solo cervezas), va centrada */
+.v-beb:has(> .v-beb-card:only-child) { grid-template-columns: minmax(0, 520px); justify-content: center; }
 .v-beb-card {
   background: var(--paper);
   border: var(--card-border);
@@ -373,6 +399,8 @@ body.verano {
   .verano .page::before, .verano .page::after { width: 10px; background-size: 10px 30px; }
 }
 @media (max-width: 600px) {
+  .v-photo { aspect-ratio: 2.6 / 1; }
+  .v-photo figcaption { font-size: 15.5px; bottom: 6px; padding: 3px 10px 4px; }
   .v-pz-tabs { gap: 8px; }
   .v-pz-tab { padding: 8px 4px 7px; }
   .v-pz-tab img { width: 54px; height: 44px; }
