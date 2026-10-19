@@ -216,6 +216,13 @@ body.verano {
 .verano .list-item .item-price { margin-top: auto; }
 .verano .pizza-item > .pizza-prices, .verano .list-item > .item-price { align-self: center; }
 
+/* Tarjeta sola en la última fila (cantidad impar): centrada. Si se suma otra, vuelve a la grilla normal. */
+.verano :is(.items-list > .list-item, .postres-row > .postre-card):last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc(50% - 7px);
+}
+
 /* Tablas (empanadas) dentro del mismo marco */
 .verano .emp-table {
   background: var(--paper);
@@ -416,6 +423,7 @@ body.verano {
 @media (max-width: 600px) {
   /* Tarjetas con descripción: una por fila; las cortas (ensaladas, postres) siguen de a dos */
   .verano .pizza-grid, .verano .items-list:has(.item-desc) { grid-template-columns: 1fr; }
+  .verano .items-list:has(.item-desc) > .list-item:last-child:nth-child(odd) { width: auto; justify-self: stretch; }
   .verano :is(.pizza-item, .list-item, .postre-card) { padding: 12px 14px 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
