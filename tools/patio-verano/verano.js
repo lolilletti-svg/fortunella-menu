@@ -21,6 +21,7 @@
     const ART = [
       // [patrón del nombre, ilustración, etiqueta en la barra, clase extra]
       [/valiente/i, null, null],
+      [/entrad/i, "croquetas", "Entraditas", "tilt-r"],
       [/esper|empanad/i, "empanada-dorada", "Empanadas", "tilt-l"],
       [/sandwich|focac/i, "focaccia", "Sándwiches", "tilt-r"],
       [/pizza/i, "pizza", "Pizzas", ""],
