@@ -122,6 +122,33 @@
       return s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
     }
 
+    // Fotos que cortan la lista de pizzas, por grupo.
+    // "at": después de cuántas tarjetas va cada foto ("end" = al final). 6 tarjetas = 2 filas de 3.
+    // Cada foto es de una pizza de ese mismo grupo; la leyenda es el nombre de la pizza.
+    // Fotos originales: Drive del Turco (REDES › Pizzas, una carpeta por pizza).
+    const PIZZA_PHOTOS = {
+      "Clásicas": [
+        { at: 6,     img: "foto-capresse",        caption: "Capresse" },
+        { at: 12,    img: "foto-calabresa",       caption: "Calabresa" },
+        { at: 18,    img: "foto-especial",        caption: "Especial" },
+        { at: "end", img: "foto-portena",         caption: "Porteña" },
+      ],
+      "Clásicas reversionadas": [
+        { at: 6,     img: "foto-roquefort-peras", caption: "Roquefort con Peras y Nuez" },
+      ],
+      "Especiales": [
+        { at: "end", img: "foto-burrata-crudo",   caption: "Burrata y Jamón Crudo" },
+      ],
+    };
+
+    function photoBanner(p) {
+      const fig = el("figure", "v-photo");
+      const img = el("img"); img.src = `assets/patio/${p.img}.webp`; img.alt = `Pizza ${p.caption}`; img.loading = "lazy";
+      fig.appendChild(img);
+      if (p.caption) fig.appendChild(el("figcaption", null, p.caption));
+      return fig;
+    }
+
     function buildPizzas(sec, items) {
       const list = items.filter((i) => !i.featured);
       const groups = [];
@@ -170,6 +197,12 @@
           }
           card.appendChild(pr);
           grid.appendChild(card);
+        }
+        // fotos que cortan la lista (según PIZZA_PHOTOS de este grupo)
+        const cards = [...grid.children];
+        for (const p of PIZZA_PHOTOS[g.title] || []) {
+          if (p.at === "end" || p.at >= cards.length) grid.appendChild(photoBanner(p));
+          else cards[p.at].before(photoBanner(p));
         }
         panels.push(grid);
         b.addEventListener("click", () => select(gi, true));
