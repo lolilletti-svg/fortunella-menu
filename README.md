@@ -80,6 +80,10 @@ docs/BITACORA.md        Historial de trabajo
 
 **Regenerar el video** (requiere ffmpeg + Chrome): capturar las 6 placas de `tools/slides.html#1..#6` con Chrome `--screenshot` a `tools/frames/`, y unirlas con ffmpeg usando `xfade` (ver `docs/BITACORA.md`).
 
+**Fotos de pizzas en la carta Patio** → `PIZZA_PHOTOS` en `tools/patio-verano/verano.js` (grupo → posición + imagen + leyenda). Imágenes en `assets/patio/foto-*.webp` (1200×500). Al reemplazar una imagen, usar nombre nuevo (caché del navegador).
+
+**Grupos de pizzas** → campo "Subgrupo" en el panel: `Clásicas`, `Clásicas reversionadas` o `Especiales`.
+
 **Cambiar el diseño de la carta Patio** → editar `tools/patio-verano/verano.css` / `verano.js`, previsualizar con `python3 tools/patio-verano/make_verano.py .` (genera `_preview-patio.html`, abrir con `python3 -m http.server`) y publicar con `bash tools/patio-verano/publicar.sh`.
 
 **Verificar el render** (sin Supabase): `cd tools && npm install && node test-render.mjs`.

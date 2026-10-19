@@ -1,5 +1,26 @@
 # Bitácora — Fortunella Menú Digital
 
+## 2026-10-13 al 19 — Carta Patio: pizzas en pestañas, fotos reales y ajustes del dueño
+
+### Lo que se hizo
+- **Pizzas en 3 pestañas con mini banners** (Clásicas 24 · Clásicas reversionadas 10 · Especiales 5). Reparto cargado en `items.subgroup` (editable desde el panel); subtítulo nuevo en la base. Descripciones muestran solo lo distintivo (texto −58 %).
+- **Fotos reales entre las tarjetas** (`PIZZA_PHOTOS` en `verano.js`): Clásicas → Capresse, Calabresa, Especial, Porteña (cada 6 tarjetas + final); Reversionadas → Roquefort con Peras y Nuez; Especiales → Burrata y Jamón Crudo. Fotos del Drive del Turco (REDES › Pizzas), banner finito 5:1 / 2,6:1 con el marco de las tarjetas.
+- **Ilustraciones nuevas**: cola con limón (Bebidas sin alcohol), croquetas (Entraditas). Barra: "Sin alcohol" / "Con alcohol" / "Entraditas".
+- **Ajustes de diseño**: tabla de bebidas única centrada y sin título repetido; tarjeta sola en la última fila centrada.
+- **Datos (Supabase)**: Entraditas con título estándar; borrada Corona duplicada y "Nuevo módulo" vacío; Budweiser corregido.
+- Páginas de prueba (`prueba-pizzas.html`, `prueba-foto.html`) quedan como redirecciones a la carta.
+
+### Estado actual
+✅ Carta en vivo y revisada (8 secciones, 39 pizzas, 6 fotos, 8 ilustraciones). Mensaje para el Turco entregado.
+
+### Notas técnicas
+- Drive compartido por link: el conector de Drive solo listaba carpetas ya abiertas. Usar `curl "https://drive.google.com/embeddedfolderview?id=<ID>"`; miniaturas `drive.google.com/thumbnail?id=<ID>&sz=w300`.
+- GitHub Pages cachea 10 min: para ver cambios en el celular, incógnito o `?v=N`.
+- Para publicar un solo cambio sin código no aprobado: `git stash push tools/patio-verano/verano.js` → `publicar.sh` → `stash pop`.
+
+### Pendientes (para el dueño)
+- Cervezas todas a $2.000 (¿real?). "Muzarrella" en Doble Muzzarella y Porteña. ¿Napolitana/Capresse llevan tomates asados?
+
 ## 2026-10-12 — Carta "Patio Fortunella" (inauguración) con diseño de verano
 
 ### Lo que se hizo
