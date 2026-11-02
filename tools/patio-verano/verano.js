@@ -25,6 +25,8 @@
       [/esper|empanad/i, "empanada-dorada", "Empanadas", "tilt-l"],
       [/sandwich|focac/i, "focaccia", "Sándwiches", "tilt-r"],
       [/pizza/i, "pizza", "Pizzas", ""],
+      [/papa/i, "papas-fritas", "Papas fritas", "tilt-r"],
+      [/kids|niñ/i, "menu-kids-milanesa", "Menú kids", "tilt-l"],
       [/ensalad/i, "caesar-bowl", "Ensaladas", "tilt-l"],
       [/dulce|postre/i, "tiramisu", "Postres", "tilt-l"],
       [/sin alcohol/i, "cola", "Sin alcohol", "tall"],
@@ -43,7 +45,7 @@
       return n;
     };
 
-    function buildBebidas(items) {
+    function buildBebidas(items, keepTitles = false) {
       const wrap = el("div", "v-beb");
       const groups = new Map();
       for (const it of items) {
@@ -60,7 +62,9 @@
           else plain.push({ name: it.name, price });
         }
         if (sized.length) {
-          const sizes = [...new Set(sized.map((s) => s.size))];
+          // columnas de menor a mayor (350ml, 500ml, 1L, 1,5L)
+          const ml = (t) => parseFloat(t.replace(",", ".")) * (/l$/i.test(t) && !/ml$/i.test(t) ? 1000 : 1);
+          const sizes = [...new Set(sized.map((s) => s.size))].sort((a, b) => ml(a) - ml(b));
           const bases = [...new Set(sized.map((s) => s.base))];
           const card = el("div", "v-beb-card");
           card.appendChild(el("p", "v-beb-title", subgroup ? `${subgroup}` : "Bebidas"));
@@ -79,6 +83,14 @@
             }
             tb.appendChild(tr);
           }
+          // Sin tamaño pero del mismo grupo (ej. Limonada): en la misma tabla, con el precio a lo ancho de los tamaños
+          for (const p of plain.splice(0)) {
+            const tr = el("tr");
+            const td = el("td", "v-beb-price", p.price != null ? money(p.price) : "");
+            td.colSpan = sizes.length;
+            tr.append(el("td", "v-beb-name", p.name), td);
+            tb.appendChild(tr);
+          }
           card.appendChild(t);
           wrap.appendChild(card);
         }
@@ -94,8 +106,62 @@
         }
       }
       // Con una sola tabla, el título naranja repite el de la sección → se omite
-      if (wrap.children.length === 1) wrap.querySelector(".v-beb-title")?.remove();
+      if (!keepTitles && wrap.children.length === 1) wrap.querySelector(".v-beb-title")?.remove();
       return wrap;
+    }
+
+    // Bebidas sin y con alcohol en UNA sección "Bebidas" (igual que la carta impresa):
+    // dos columnas; Sin alcohol encabeza la izquierda, la primera de con alcohol (Porrones) la derecha,
+    // el resto va a la columna más corta. Cada recuadro con su alto natural.
+    function mergeBebidas(secs, mods, nav) {
+      const [first, ...rest] = secs;
+      const cards = mods.map((m) => [...buildBebidas(m.items, true).children]);
+      cards.flat().forEach((c) => {
+        const t = c.querySelector(".v-beb-title");
+        if (t) t.textContent = t.textContent.charAt(0).toUpperCase() + t.textContent.slice(1).toLowerCase(); // "Sin Alcohol" → "Sin alcohol"
+        c.classList.remove("v-beb-side");
+      });
+      cards.flat().forEach((c, i) => (c.style.order = i)); // en celular (una columna) vuelven al orden de la carta
+      const rows = (c) => c.querySelectorAll("tbody tr, .v-beb-row").length + 2;
+      const cols = [el("div", "v-beb-col"), el("div", "v-beb-col")], h = [0, 0];
+      const put = (c, i) => { cols[i].appendChild(c); h[i] += rows(c); };
+      const [a = [], b = []] = cards;
+      const firsts = b.length ? [a[0], b[0]] : a.slice(0, 2);
+      firsts.forEach((c, i) => c && put(c, i));
+      cards.flat().filter((c) => !firsts.includes(c)).sort((x, y) => rows(y) - rows(x))
+        .forEach((c) => put(c, h[0] <= h[1] ? 0 : 1));
+      const wrap = el("div", "v-beb v-beb-cols");
+      wrap.append(...cols);
+      first.querySelector(".v-beb").replaceWith(wrap);
+
+      // Título e ilustraciones (vaso + copa) en la primera; las demás secciones se quitan
+      first.querySelector(".sec-title").textContent = "Bebidas";
+      const fig = first.querySelector(".v-art");
+      rest.forEach((sec) => {
+        const img = sec.querySelector(".v-art img");
+        if (fig && img) fig.appendChild(img);
+        nav.querySelector(`a[href="#${sec.id}"]`)?.remove();
+        const sep = sec.previousElementSibling; // separador de cítrico que iba antes de esa sección
+        if (sep?.classList.contains("asterisk-row")) sep.remove();
+        sec.remove();
+      });
+      const link = nav.querySelector(`a[href="#${first.id}"]`);
+      first.id = "s-bebidas";
+      if (link) { link.href = "#s-bebidas"; link.textContent = "Bebidas"; }
+    }
+
+    // Todas las ilustraciones de sección ocupan la misma superficie → se ven del mismo tamaño
+    // (una redonda como la pizza y una alargada como la empanada), igual que en la carta impresa.
+    function sizeArt(img) {
+      const area = window.innerWidth <= 768 ? 11500 : 15800; // px² (≈ croquetas a 150 px de ancho)
+      const fit = () => {
+        const r = img.naturalWidth / img.naturalHeight;
+        if (!r) return;
+        const hh = Math.sqrt(area / r);
+        img.style.width = `${Math.round(hh * r)}px`;
+        img.style.height = `${Math.round(hh)}px`;
+      };
+      img.complete ? fit() : img.addEventListener("load", fit);
     }
 
 
@@ -209,6 +275,7 @@
           if (p.at === "end" || p.at >= cards.length) grid.appendChild(photoBanner(p));
           else cards[p.at].before(photoBanner(p));
         }
+        grid.prepend(el("p", "v-pz-print-title", g.title)); // en papel no hay pestañas: cada grupo lleva su título
         panels.push(grid);
         b.addEventListener("click", () => select(gi, true));
       });
@@ -253,6 +320,8 @@
           img.src = `assets/patio/${rule[1]}.webp`;
           img.alt = "";
           img.loading = "lazy";
+          img.onerror = () => fig.remove(); // ilustración todavía no subida: la sección queda sin dibujo
+          sizeArt(img);
           fig.appendChild(img);
           sec.prepend(fig);
           watch.push(fig);
@@ -263,6 +332,9 @@
         a.textContent = rule ? rule[2] : mod.name;
         nav.appendChild(a);
       });
+
+      const beb = sections.map((sec, i) => [sec, detail.modules[i]]).filter(([sec, m]) => m && sec.isConnected && sec.querySelector(".v-beb"));
+      if (beb.length > 1) mergeBebidas(beb.map(([s]) => s), beb.map(([, m]) => m), nav);
 
       // Aparición suave de las ilustraciones
       const io = new IntersectionObserver((entries) => {

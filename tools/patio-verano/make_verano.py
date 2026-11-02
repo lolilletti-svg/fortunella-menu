@@ -16,8 +16,8 @@ head_new = f'''  <!-- ─── TOLDO + LUCES ─── -->
 
   <!-- ─── HERO PATIO ─── -->
   <header class="v-hero">
-    {hero_name}
     <div class="v-patio">Patio</div>
+    {hero_name}
     <div class="v-tagline">Un manjar en el patio</div>
     <img class="v-bondi" src="assets/patio/bondi.webp" alt="Ilustración del patio de Fortunella con el bondi y las luces">
     <div class="v-facts">Masa madre <span>✦</span> Horno de barro <span>✦</span> Ingredientes frescos</div>
@@ -33,8 +33,9 @@ s = s[:start] + head_new + s[end:]
 
 s = s.replace("<title>Patio Fortunella — Carta</title>", "<title>Patio Fortunella — Verano</title>")
 s = s.replace('<body data-menu="patio">', '<body data-menu="patio" class="verano">')
-s = s.replace('<div class="footer-tagline">Gracias por elegirnos</div>',
-              '<div class="footer-tagline">Gracias por elegirnos</div>')
+s = s.replace('''<div class="footer-buen">¡buen provecho!</div>
+        <div class="footer-tagline">Gracias por elegirnos</div>''',
+              '<div class="footer-buen">Gracias por confiar en nosotros</div>')
 
 css = open(os.path.join(os.path.dirname(__file__), "verano.css"), encoding="utf-8").read()
 

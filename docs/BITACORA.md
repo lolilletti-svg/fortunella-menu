@@ -1,5 +1,27 @@
 # Bitácora — Fortunella Menú Digital
 
+## 2026-10-26 al 11-02 — Carta Patio: bebidas, ilustraciones nuevas y carta impresa (oficio)
+
+### Lo que se hizo
+- **Web (fortunella-pizzas.github.io)**: "Patio" arriba de "Fortunella" y más grande; pie "Gracias por confiar en nosotros"; barra de secciones centrada y más chica.
+- **Bebidas en una sola sección** (como la impresa): 2 columnas (Sin alcohol + Tragos | Porrones + Vinos), en celular en orden de la carta. Columnas de tamaño ordenadas de menor a mayor; ítems sin tamaño del mismo grupo (Limonada) van como fila de la tabla.
+- **Ilustraciones nuevas** (Gemini, de Lucía): `papas-fritas.webp`, `menu-kids-milanesa.webp`. Todas las ilustraciones de sección con la misma superficie (se ven del mismo tamaño).
+- **Datos (Supabase)**: Porrones 330/710/1L + Tragos + Vinos; Malbec Joven duplicado borrado; gaseosas chicas 350ml y grandes 1L; helado sin descripción repetida; paréntesis sin espacios; Limonada al subgrupo Sin Alcohol. "Stella Negra" confirmado por el dueño.
+- **Carta para imprimir** (`tools/patio-verano/carta_a4.py` + `pdf-a4.sh`): diseño propio de 2 carillas con los datos de Supabase, sin precios (solo "$" para completar a mano). Tamaño **oficio** 216×340 con letra ×1.28 (`PAPEL=a4` para A4).
+
+### Estado actual
+✅ Web publicada. ✅ PDF oficio + QR entregados en `~/Downloads/Versión Patio Fortunella/`.
+
+### Notas técnicas
+- En el PDF, los fondos repetidos (ondas, festón, guirnalda) Chrome los rasteriza borrosos → usar SVG inline / `<img>`. Transform `scaleX(-1)` no se ve en Vista Previa → dibujo espejado propio. Los `radial-gradient` del fondo se ven como manchas en papel.
+- Verificar PDFs con Quartz (como Vista Previa), no solo con pdftoppm.
+- Python de python.org en Mac no trae certificados SSL → datos con `curl`.
+- Para ver cuánto sobra por carilla: medir el alto del contenido en Chrome headless.
+
+### Pendientes
+- Dueño: precios de **Soda 500ml** y **Limonada** (en $0 en la web).
+- La ilustración del Menú kids tiene una cajita estilo Cajita Feliz de McDonald's (sugerido recortarla).
+
 ## 2026-10-13 al 19 — Carta Patio: pizzas en pestañas, fotos reales y ajustes del dueño
 
 ### Lo que se hizo

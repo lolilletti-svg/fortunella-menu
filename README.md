@@ -58,7 +58,8 @@ patio.html, patio-verano.html   Redirecciones a https://fortunella-pizzas.github
 assets/patio/           Acuarelas de la carta Patio (WebP livianos)
 data/patio-fallback.json Respaldo de la carta Patio
 tools/patio-verano/     Carta Patio: base-patio.html + verano.css + verano.js,
-                        make_verano.py (genera la página) y publicar.sh (la publica)
+                        make_verano.py (genera la página) y publicar.sh (la publica);
+                        carta_a4.py + pdf-a4.sh (carta para imprimir, PDF)
 tools/patio-migration.sql  Migración que creó la carta Patio (columna menu + datos)
 GUIA-DUENO.md / .pdf    Guía para el dueño
 GUIA-VIDEO.mp4          Video explainer vertical (~20s)
@@ -85,6 +86,8 @@ docs/BITACORA.md        Historial de trabajo
 **Grupos de pizzas** → campo "Subgrupo" en el panel: `Clásicas`, `Clásicas reversionadas` o `Especiales`.
 
 **Cambiar el diseño de la carta Patio** → editar `tools/patio-verano/verano.css` / `verano.js`, previsualizar con `python3 tools/patio-verano/make_verano.py .` (genera `_preview-patio.html`, abrir con `python3 -m http.server`) y publicar con `bash tools/patio-verano/publicar.sh`.
+
+**Carta Patio para imprimir** → `bash tools/patio-verano/pdf-a4.sh` genera `carta-patio-oficio.pdf` (2 carillas, oficio 216×340, sin precios: solo "$" para completar a mano) con los datos actuales de Supabase. A4: `PAPEL=a4 bash tools/patio-verano/pdf-a4.sh`. Diseño en `tools/patio-verano/carta_a4.py` (`SHOW_PRICES`, `PAPERS`).
 
 **Verificar el render** (sin Supabase): `cd tools && npm install && node test-render.mjs`.
 
